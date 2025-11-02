@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html;text/css;charset=utf-8">
+		<link rel="stylesheet" href="c/bootstrap.min.css">
+		<TITLE>Таранин</TITLE>
+		<STYLE type="text/css">
+			header,main,footer{
+				width:100%;
+				max-width:1000px;
+				margin-left:auto;
+				margin-right:auto
+			}
+			.s1{
+				height:60px;
+				display:flex;
+				flex-wrap:wrap
+			}
+			.s2{
+				min-height:495px;
+				display:flex;
+				flex-wrap:wrap
+			}
+			.s3{
+				height:60px;
+				display:flex;
+				flex-wrap:wrap
+			}
+			.top1{
+				flex:10 0 100%;
+				border:2px solid white;
+				background-color:#FFC8AD
+			}
+			.top2{
+				border:2px solid white;
+				background-color:#89D06D;
+				height:175px;
+				width:100%
+			}
+			.left{
+				border:2px solid white;
+				background-color:#FDA77C;
+				min-height:320px;
+				width:25%
+			}
+			.right{
+				border:2px solid white;
+				background-color:#8AC5D6;
+				min-height:320px;
+				width:75%
+			}
+			.bottom{
+				flex:10 0 100%;
+				border:2px solid white;
+				background-color:#FFC8AD
+			}
+			.right1{flex:10 0 100%}
+			.plus{
+				width:175px;
+				height:120px;
+				background-color:yellow;
+				margin:5px
+			}
+			.top1,.top2,.left,.right,.bottom{
+				display:flex;
+				justify-content:space-around;
+				flex-wrap:wrap;
+				text-align:center;
+				font-size:20px;
+				align-content:flex-start
+			}
+			.right2{
+				flex-wrap:wrap;
+				align-content:space-around;
+				justify-content:space-around;
+				display:flex;
+				font-size:20px;
+				min-height:260px;
+				width:100%
+			}
+		</STYLE>
+	</HEAD>
+	<BODY>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" type="o"></script>
+		<script defer src="j/bootstrap.bundle.min.js" type="oo"></script>
+		<header>
+			<div class="s1">
+				<div class="top1"><div class="right1">Заголовок страницы</div></div>
+			</div>
+		</header>
+		<main>
+			<div class="s2">
+				<div class="top2"><div class="right1">Блок слайдера</div></div>
+				<div class="left"><div class="right1">Блок меню</div></div>
+				<div class="right">
+					<div class="right1">Основная часть</div>
+					<div class="right2">
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+						<div class="plus"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="s3">
+				<div class="bottom"><div class="right1">Блок окончания страницы</div></div>
+			</div>
+		</footer>
+	</body>
+</html>

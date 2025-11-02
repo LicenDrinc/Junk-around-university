@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<TITLE>Таранин</TITLE>
+		<meta name="Author" content="3.3">
+		<meta name="date" content="xx:xx:2023">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<STYLE type="text/css">
+			.lol {
+				width:150px;
+				height:40px;
+				background-color:white;
+				border:3px solid #70c402;
+				margin-left: 180px;
+				margin-top:65px;
+				border-radius: 150px;
+				text-align:center;
+				color: #70c402;
+			}
+			.lol1 {
+				width:150px;
+				height:40px;
+				background-color:white;
+				border:3px solid #00c6e0;
+				margin-left: 205px;
+				margin-top:65px;
+				border-radius: 150px;
+				text-align:center;
+				color: #00c6e0;
+			}
+			.lol2 {
+				width:150px;
+				height:40px;
+				background-color:black;
+				border:3px solid red;
+				margin-left: 10px;
+				margin-top:65px;
+				border-radius: 150px;
+				text-align:center;
+				color: red;
+			}
+		</STYLE>
+	</HEAD>
+	<BODY>
+		<h1>Анкета</h1>
+		<FORM action="@">
+			<fieldset>
+				<legend> Ввод исходных данных(заголовок рамки) </legend>
+				<table border="0">
+					<tr>
+						<td align="right">Имя</td>
+						<td align="right"><input type="text" id="name" value="Иван" size="15"></td>
+					</tr>
+					<tr>
+						<td align="right">Фамилия</td>
+						<td align="right"><input type="text" id="lastname" value="Иванов" size="15"></td>
+					</tr>
+					<tr>
+						<td align="right">E-mail</td>
+						<td align="right"><input type="text" value="css@css.ru" size="30"></td>
+					</tr>
+					<tr>
+						<td align="right">Комментарий</td>
+						<td align="right"><textarea id="comm" cols="40" rows="7">Знакомлюсь с формами через PHP и рамками в HTML. Тег fieldset</textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="right"><button type="submit" name="OK" value="OK">OK</button></td>
+						<td><button type="reset" name="OK" value="OK">Отмена-Cancel</button></td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+		<P>|
+		<form action="@">
+			<fieldset style="border:0;">
+				<legend> On-line заявка: </legend>
+				<DIV style="height:40px"><label> Фамилия Имя Отчество </label><input style="height: 25px; margin-left: 10px; border:2px solid #70c402" type="text"></DIV>
+				<DIV style="height:35px"><label> Название компании </label><input style="height: 25px;margin-left: 39px; border:2px solid #70c402" type="text"></DIV>
+				<DIV style="height:20px; margin-left: 178px"> например: (495) 617-17-56 </div>
+				<DIV style="height:40px"><label> Контактный телефон </label><input style="height: 25px;margin-left: 30px; border:2px solid #70c402" type="text"></DIV>
+				<DIV style="height:40px"><label> Контактный E-mail </label><input style="height: 25px;margin-left: 42px; border:2px solid #70c402" type="text"></DIV>
+				<DIV style="height:40px"><label style="vertical-align: 39px"> Текст сообщения </label><textarea style="margin-left: 56px; border:2px solid #70c402" id="commmm" cols="45" rows="6"></textarea></DIV>
+				<div><button type="submit" name="to send" value="to send" class="lol">Отправить</button></div>
+			</fieldset>
+		</form>
+		<p>|
+		<form action="@">
+			<fieldset style="border:2px solid #00c6e0; background-color:#e5e5e5">
+				<legend>あなたは何をしたいですか</legend>
+				<DIV style="height:40px"><label>名姓</label><input style="height: 25px; margin-left: 351px; border:2px solid #00c6e0" type="text"></DIV>
+				<DIV style="height:35px">
+					<label>あなたは何歳ですか</label><select style="height: 25px;margin-left: 350px; border:2px solid #00c6e0" id="co">
+						<option value="0-5">0-5</option>
+						<option value="6-10">6-10</option>
+						<option value="11-14">11-14</option>
+						<option value="15-18">15-18</option>
+						<option value="19-35">19-35</option>
+						<option value="36-75">36-75</option>
+						<option value="76-100">76-100</option>
+					</select>
+				</DIV>
+				<div style="height:35px"><label>性別を選択します</label><input type="radio" name="床" value="ガイ" style="margin-left: 340px;">ガイ<input type="radio" name="床" value="女">女</div>
+				<label>私はめちゃくちゃです。</label><br>
+				<input type="checkbox" checked id="ci" value="助けて！" name="助けて！" /><label class="light" for="はい。">はい。</label><br>
+				<input type="checkbox" checked id="ci" value="助けて！" name="助けて！" /><label class="light" for="いいえ。">いいえ。</label><br>
+				<input type="checkbox" checked id="ci" value="助けて！" name="助けて！" /><label class="light" for="私は知らない"></label>私は知らない<br>
+				<input type="checkbox" checked id="ci" value="助けて！" name="助けて！" /><label class="light" for="バルブ">バルブ</label><br>
+				<div style="height:35px"><label>あなたはどこに住んでいますか（都市のみ）</label><input style="height: 25px;margin-left: 63px; border:2px solid #00c6e0" type="text"></DIV>
+				<DIV style="height:35px"><label>あなたは何をしたいですか（日本語）</label><input style="height: 25px;margin-left: 111px; border:2px solid #00c6e0" type="text"></DIV>
+				<DIV style="height:40px"><label style="vertical-align: 39px"> コメント （日本語） </label><textarea style="margin-left: 55px; border:2px solid #00c6e0" id="commmmmmmm" cols="45" rows="6">コメントを書くこともできます</textarea></DIV>
+				<div><button type="submit" name="to send" value="to send" class="lol1">送信するには</button><button type="reset" name="to send" value="to send" class="lol2">いいえおかげで</button></div>
+			</fieldset>
+		</form>
+	</body>
+</html>

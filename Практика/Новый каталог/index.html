@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<TITLE>ТАРАНИН</TITLE>
+    </HEAD>
+    <BODY>
+	<form id="fromFile">
+	    <p>файл <input type="file" id="fileDoc" name="fileDoc" /></p>
+		<p>формат <select id="format" name="format">
+			<option value="jpeg">jpeg</option>
+			<option value="jpg">jpg</option>
+			<option value="gif">gif</option>
+			<option value="png">png</option>
+			<option value="tif">tif</option>
+			<option value="tiff">tiff</option>
+			<option value="bmp">bmp</option>
+			<option value="eps">eps</option>
+			<option value="ai">ai</option>
+			<option value="psd">psd</option>
+			<option value="raw">raw</option>
+			<option value="webp">webp</option>
+			<option value="heic">heic</option>
+			<option value="hdr">hdr</option>
+			<option value="dng">dng</option>
+			<option value="indd">indd</option>
+			<option value="xcf">xcf</option>
+			<option value="cdr">cdr</option>
+			<option value="tga">tga</option>
+			<option value="pdf">pdf</option>
+		</select></p>
+		<p id="config"></p>
+	    <p><button type="submit">конвертировать</button></p>
+	</form>
+	<pre id="result"></pre>
+	<pre id="deb"></pre>
+	
+	<script>
+		// convert -density <dpi> -quality <1-100> -compress <jpeg zip lzw ple fax group4> -monochrome /*черно-белый*/ "из" "в pdf" 
+
+		// проверка формата для вывода доплнительных параметров
+		document.getElementById("format").addEventListener("click", () => {
+		if (document.getElementById('format').value == "pdf")
+			document.getElementById('config').innerHTML = 'конфигурация</p><p>разрешение <input type="number" id="dpi" /></p>'+
+			'<p>качество сжатия  1 <input type="range" id="qua" min="1" max="100" /> 100</p>'+
+			'<p>метод сжатия <select id="compress">'+
+			'<option value="none">none</option>'+
+			'<option value="jpeg">jpeg</option>'+
+			'<option value="zip">zip</option>'+
+			'<option value="lzw">lzw</option>'+
+			'<option value="ple">ple</option>'+
+			'<option value="fax">fax</option>'+
+			'<option value="group4">group4</option></select></p>'+
+			'<p>черно-белый<input type="checkbox" onclick="checkFluency()" id="mono">';
+		else
+			document.getElementById('config').innerHTML = '';
+		});
+		
+	    document.getElementById('fromFile').addEventListener('submit', async function (e) {
+		e.preventDefault();
+		const fileInput = document.getElementById('fileDoc');
+		const formatInput = document.getElementById('format');
+		dpi = ''; qua = ''; compress = ''; mono = '';
+		if (formatInput.value == "pdf")
+		{
+			dpi = dpi + document.getElementById('dpi').value;
+			qua = qua + document.getElementById('qua').value;
+			compress = compress + document.getElementById('compress').value;
+			mono = mono + document.getElementById('mono').checked;
+		}
+
+		// проверка заполнения формы
+		if (!fileInput.files.length)
+		{
+		    alert('где файл');
+		    return;
+		}
+		if (!formatInput.value)
+		{
+		    alert('где формат');
+		    return;
+		}
+		
+		const file = fileInput.files[0];
+		const reader = new FileReader();
+		
+		reader.onload = async function ()
+		{
+		    // получение даных из фйла
+		    const fileData = reader.result.split(',')[1];
+		    
+		    try {
+			// отправка json на серевер
+			const response = await fetch('fromGet.php', {
+				method: 'POST',
+				headers: { 'Content-Type': 'appalication/json' },
+				body: JSON.stringify({
+				image: fileData,
+				format: formatInput.value,
+				fileDoc1: fileInput.files[0].name,
+				dpi: dpi,
+				qua: qua,
+				compress: compress,
+				mono: mono
+				})
+			});
+			
+			const result = await response.json();
+			if (result.error != null || result.debug != null)
+			    document.getElementById('result').textContent = JSON.stringify(result, null, 4);
+			else
+			{
+			    // отправка файла клиенту
+			    const bC = atob(result.image);
+			    const bN = new Array(bC.length);
+			    for (let i = 0; i < bC.length; i++)
+			    {
+				bN[i] = bC.charCodeAt(i);
+			    }
+			    const bA = new Uint8Array(bN);
+			    
+			    const blob = new Blob([bA]);
+			    const link = document.createElement('a');
+			    link.href = URL.createObjectURL(blob);
+			    link.download = result.fileDoc1;
+			    link.click();
+			    document.getElementById('result').textContent = '';
+			}
+		    }
+		    catch (error)
+		    {
+			document.getElementById('result').textContent = 'ERROR ' + error.message;
+		    }
+		};
+		
+		reader.readAsDataURL(file);
+	    });
+	</script>
+    </body>
+</html>
