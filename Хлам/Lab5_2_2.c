@@ -408,6 +408,6 @@ int main(int argc, char **argv)
 	for (int i = 0; i < 4; i++) printf("%lf%c",matrf[0][i],9);
 	printf("\n\npog = %lf | x = %lf | f = %lf\n",pog,x,f);
 
-	freeMatr(matr, 2); freeMatr(matrM, 1); freeMatr(matAB, 2);
+	freeMatr(matr, 2); freeMatr(matrM, 1); freeMatr(matrAB, 2);
 	freeMatr(matrab, 2); freeMatr(matrf, 1); freeMatr(matr1, 2);
 }
