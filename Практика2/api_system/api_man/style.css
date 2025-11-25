@@ -1,0 +1,10 @@
+body {
+  color: white;
+  background-color: #3767A2;
+}
+.navbar-brand{
+  color: white !important;
+}
+a{
+  color: yellow;
+}
