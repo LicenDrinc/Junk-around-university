@@ -5,7 +5,8 @@ require_once "./../../lib/apiedbcheck.php";
 require_once "./../../../api_security/security.php";
 
 //$address='https://vc.shspu.ru/release/current/api';
-$address='http://pra-conv.shgpi/api_system/api';
+$address='http://localhost/api_system/api';
+//$address='http://pra-conv.shgpi/api_system/api';
 
 $command='/part_test/md5file';
 
