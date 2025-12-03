@@ -23,7 +23,7 @@ for ($j = 0; $i != $argc - 1 && strpos($argv[$i], '-') !== 0; $j++, $i++) {
     $data["file"][$j] = base64_encode(file_get_contents($argv[$i]));
 }
 
-while (true) {
+for (; $i < $argc - 1; $i++) {
     if (strpos($argv[$i], '-') === 0) {
 	switch ($argv[$i]) {
 	    case "-resize"; casePara("resize"); break;
@@ -34,9 +34,7 @@ while (true) {
 	    case "-border"; casePara("border"); break;
 	    default; print($argv[$i]." нету того параметра\n");
 	}
-	$i++;
     }
-    else break;
 }
 
 //$data["apikey"] = $api_guest_key;
