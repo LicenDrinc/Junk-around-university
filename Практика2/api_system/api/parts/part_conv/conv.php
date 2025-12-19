@@ -9,10 +9,10 @@ function createTmpFile($n, $d) { $n = '/tmp/'.md5(time().rand()).$n; file_put_co
 # праверка входящих файлов: $n массив из типо файлов
 function checkSeveralFromFile($n) {
     global $filename, $typeconvert;
-    if (count($filename) < 1) return exitError("небыло передоны файлы", 98);
+    if (count($filename) < 1) return exitError("небыло передоны входящие файлы", 101);
     for ($i = 0; $i < count($filename); $i++) {
         $fileformat = substr($filename[$i],strrpos($filename[$i],'.')+1);
-        if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла для правила ".$typeconvert, 100+$i);
+        if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла подназванию ".$filename[$i]." для правила ".$typeconvert, 102);
     }
     return 0;
 }
@@ -20,20 +20,20 @@ function checkSeveralFromFile($n) {
 # праверка входящего файла: $n массив из типо файлов
 function checkOneFromFile($n) {
     global $filename, $typeconvert;
-    if (count($filename) < 1) return exitError("небыло передоны файлы", 98);
-    if (count($filename) > 1) return exitError("передано несколько файлов, а требуется один", 99);
+    if (count($filename) < 1) return exitError("небыло передоны входящий файл", 103);
+    if (count($filename) > 1) return exitError("передано несколько входящих файлов, а требуется один", 104);
     $fileformat = substr($filename[0],strrpos($filename[0],'.')+1);
-    if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла для правила ".$typeconvert, 100);
+    if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла подназванию ".$filename[0]." для правила ".$typeconvert, 105);
     return 0;
 }
 
 # праверка выходящего файла: $n массив из типо файлов
 function checkOneInFile($n) {
     global $fileout, $typeconvert, $fileformat;
-    if ($fileout == null) return exitError("небыло передоны файлы", 96);
-    //if (count($fileout) > 1) return exitError("передано несколько файлов, а требуется один", 97);
+    if ($fileout == null) return exitError("небыло передоны название выходящего файла", 106);
+    //if (count($fileout) > 1) return exitError("передано несколько выходящих файлов, а требуется один", 107);
     $fileformat = substr($fileout,strrpos($fileout,'.')+1);
-    if (!in_array($fileformat, $n)) return exitError("неправельный тип выходящего файла для правила ".$typeconvert, 100);
+    if (!in_array($fileformat, $n)) return exitError("неправельный тип выходящего файла подназванию ".$fileout." для правила ".$typeconvert, 108);
     return 0;
 }
 
@@ -46,7 +46,7 @@ function createSeveralTmpFile() {
         $filenamelist .= '"'.$filenametmp[$i].'" '; # добавление в список файлов для конвертации
         if (!file_exists($filenametmp[$i])) { # проверка временого файла
 	        for ($j = 0; $j < $i; $j++) unlink($filenametmp[$j]);
-	        return exitError("создание временого файла прошла не успешно", 900+$i);
+	        return exitError("создание временого файла подназванию ".$filename[$i]." не прошла успешно", 109);
         }
     }
     return 0;
@@ -59,7 +59,7 @@ function createOneTmpFile() {
     chmod($filenametmp[0], 0777);
     $filenamelist = '"'.$filenametmp[0].'" '; # добавление в список файлов для конвертации
     # проверка временого файла
-    if (!file_exists($filenametmp[0])) return exitError("создание временого файла прошла не успешно", 900);
+    if (!file_exists($filenametmp[0])) return exitError("создание временого файла подназванию ".$filename[0]." не прошла успешно", 110);
     return 0;
 }
 
@@ -109,7 +109,7 @@ function deleteSeveralTmpFile() { global $filenametmp; for ($i = 0; $i < count($
 function pushOneNewFile() {
     global $filenewnametmp, $fileout;
     # проверка сканвертированого
-    if (!file_exists($filenewnametmp)) return exitError("конвертация прошла не успешно", 800);
+    if (!file_exists($filenewnametmp)) return exitError("конвертация не прошла успешно", 111);
     $newfile = base64_encode(file_get_contents($filenewnametmp)); # полученое содержимого сконвертированого файла
     unlink($filenewnametmp); # удаление сконвертированого временого файла
     # все норм, утверждаем это
@@ -129,7 +129,7 @@ list($apikey,$typeconvert,$file,$filename,$fileout) = $req;
 $userid = apikey_check($apikey); if (!$userid) return api_error(EFIELDBAD,"apikey");
 
 # типы файлов. Стандартный: тип = array(форматы);
-$image = array('png','jpeg','jpg','gif','bmp','tiff','tif','webp','avif','heif', 'heic','raw','jxl','svg','eps','pdf','ai','cdr');
+$image = array('png','jpeg','jpg','gif','bmp','tiff','tif','webp','avif','heif','heic','raw','jxl','svg','eps','pdf','ai','cdr');
 $writer = array('odt','doc','docx','rtf','txt','html');
 $calc = array('ods','xls','xlsx','csv');
 $impress = array('odp','ppt','pptx');
@@ -138,7 +138,7 @@ $pdf = array('pdf');
 # форматы, в которые можно сконвертироавть: тип конвертации => array(форматы)
 $informats = [
     "ImageToImage"=>$image, "ImageToGif"=>array('gif'),
-    "WriterToOdt"=>array('odt'), "WriterToDoc"=>array('doc') "WriterToDocx"=>array('docx'), "WriterToRtf"=>array('rtf'), "WriterToHtml"=>array('html'),
+    "WriterToOdt"=>array('odt'), "WriterToDoc"=>array('doc'), "WriterToDocx"=>array('docx'), "WriterToRtf"=>array('rtf'), "WriterToHtml"=>array('html'),
     "CalcToOds"=>array('ods'), "CalcToXls"=>array('xls'), "CalcToXlsx"=>array('xlsx'), "CalcToCsv"=>array('csv'),
     "ImpressToOdp"=>array('odp'), "ImpressToPpt"=>array('ppt'), "ImpressToPptx"=>array('pptx'),
     "ImageToPdf"=>$pdf, "WriterToPdf"=>$pdf, "CalcToPdf"=>$pdf, "ImpressToPdf"=>$pdf
@@ -174,7 +174,7 @@ switch ($typeconvert) {
         $error = checkOneFromFile($calc); break;
     case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
         $error = checkOneFromFile($impress);
-    default: return exitError($typeconvert." нету такого правила конвертирования", 95);
+    default: return exitError($typeconvert." нету такого правила конвертирования", 100);
 } if ($error !== 0) return $error;
 
 $error = checkOneInFile($informats[$typeconvert]);
