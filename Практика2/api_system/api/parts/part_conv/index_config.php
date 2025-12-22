@@ -9,7 +9,7 @@ $help["install"] = "
 
 $help["format"] = "
 Поддерживаемые форматы:
-    изображения: png, jpeg, jpg, gif, bmp, tiff, tif, webp, avif, heif, heic, raw, jxl, svg, eps, pdf, ai, cdr
+    изображения: png, jpeg, jpg, gif, bmp, tiff, tif, webp, avif, heif, heic, raw, jxl, svg, eps, pdf, ai, cdr, pbm
     текстовые документы: odt, doc, docx, rtf, txt, html
     табличные документы: ods, xls, xlsx, csv
     презентации: odp, ppt, pptx

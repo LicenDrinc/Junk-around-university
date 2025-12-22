@@ -173,7 +173,7 @@ list($apikey,$typeconvert,$file,$filename,$fileout) = $req;
 $userid = apikey_check($apikey); if (!$userid) return api_error(EFIELDBAD,"apikey");
 
 # типы файлов. Стандартный: тип = array(форматы);
-$image = array('png','jpeg','jpg','gif','bmp','tiff','tif','webp','avif','heif','heic','raw','jxl','svg','eps','pdf','ai','cdr');
+$image = array('png','jpeg','jpg','gif','bmp','tiff','tif','webp','avif','heif','heic','raw','jxl','svg','eps','pdf','ai','cdr','pbm');
 $writer = array('odt','doc','docx','rtf','txt','html');
 $calc = array('ods','xls','xlsx','csv');
 $impress = array('odp','ppt','pptx');
@@ -201,7 +201,7 @@ $librefilter = [
 # параметыры для конвертации
 # для проверки входящих параметров. Стандартный: $<тип>paraname = array(название параметров);
 # преоброзование входящих параметров для утилыт. Стандартный: $<тип>topara = ["название параметра" => "параметры для утилиты"]
-global $imagetopara, $imageparaname, $docparaname, $doctopara;
+global $imagetopara, $imageparaname, $librertopara, $libreparaname;
 $imageparaname = array('resize','quality','rotate','blur','bordercolor','border','delay','loop');
 $libreparaname = array('');
 
