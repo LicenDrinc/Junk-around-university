@@ -8,9 +8,9 @@ $help["install"] = "
 ";
 
 $help["format"] = "
-Форматы которые принимаются:
-    картинки: png, jpeg, jpg, gif, bmp, tiff, tif, webp, avif, heif, heic, raw, jxl, svg, eps, pdf, ai, cdr
-    текстовые догументы: odt, doc, docx, rtf, txt, html
-    табличные догументы: ods, xls, xlsx, csv
+Поддерживаемые форматы:
+    изображения: png, jpeg, jpg, gif, bmp, tiff, tif, webp, avif, heif, heic, raw, jxl, svg, eps, pdf, ai, cdr
+    текстовые документы: odt, doc, docx, rtf, txt, html
+    табличные документы: ods, xls, xlsx, csv
     презентации: odp, ppt, pptx
 ";

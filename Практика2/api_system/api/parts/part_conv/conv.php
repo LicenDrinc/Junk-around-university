@@ -9,10 +9,10 @@ function createTmpFile($n, $d) { $n = '/tmp/'.md5(time().rand()).$n; file_put_co
 # праверка входящих файлов: $n массив из типо файлов
 function checkSeveralFromFile($n) {
     global $filename, $typeconvert;
-    if (count($filename) < 1) return exitError("небыло передоны входящие файлы", 101);
+    if (count($filename) < 1) return exitError("не было переданы входящие файлы", 101);
     for ($i = 0; $i < count($filename); $i++) {
         $fileformat = substr($filename[$i],strrpos($filename[$i],'.')+1);
-        if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла подназванию ".$filename[$i]." для правила ".$typeconvert, 102);
+        if (!in_array($fileformat, $n)) return exitError("неправильный тип входящего файла под названием ".$filename[$i]." для правила ".$typeconvert, 102);
     }
     return 0;
 }
@@ -20,20 +20,21 @@ function checkSeveralFromFile($n) {
 # праверка входящего файла: $n массив из типо файлов
 function checkOneFromFile($n) {
     global $filename, $typeconvert;
-    if (count($filename) < 1) return exitError("небыло передоны входящий файл", 103);
+    if (count($filename) < 1) return exitError("не было переданы входящий файл", 103);
     if (count($filename) > 1) return exitError("передано несколько входящих файлов, а требуется один", 104);
     $fileformat = substr($filename[0],strrpos($filename[0],'.')+1);
-    if (!in_array($fileformat, $n)) return exitError("неправельный тип входящего файла подназванию ".$filename[0]." для правила ".$typeconvert, 105);
+    if (!in_array($fileformat, $n)) return exitError("неправильный тип входящего файла под названием ".$filename[0]." для правила ".$typeconvert, 105);
     return 0;
 }
 
 # праверка выходящего файла: $n массив из типо файлов
 function checkOneInFile($n) {
     global $fileout, $typeconvert, $fileformat;
-    if ($fileout == null) return exitError("небыло передоны название выходящего файла", 106);
+    if ($fileout == null) return exitError("не было переданы название выходящего файла", 106);
     //if (count($fileout) > 1) return exitError("передано несколько выходящих файлов, а требуется один", 107);
     $fileformat = substr($fileout,strrpos($fileout,'.')+1);
-    if (!in_array($fileformat, $n)) return exitError("неправельный тип выходящего файла подназванию ".$fileout." для правила ".$typeconvert, 108);
+    if (!in_array($fileformat, $n)) 
+        return exitError("неправильный тип выходящего файла под названием ".$fileout." для правила ".$typeconvert, 108);
     return 0;
 }
 
@@ -46,7 +47,7 @@ function createSeveralTmpFile() {
         $filenamelist .= '"'.$filenametmp[$i].'" '; # добавление в список файлов для конвертации
         if (!file_exists($filenametmp[$i])) { # проверка временого файла
 	        for ($j = 0; $j < $i; $j++) unlink($filenametmp[$j]);
-	        return exitError("создание временого файла подназванию ".$filename[$i]." не прошла успешно", 109);
+	        return exitError("создание временного файла под названием ".$filename[$i]." не прошла успешно", 109);
         }
     }
     return 0;
@@ -59,7 +60,7 @@ function createOneTmpFile() {
     chmod($filenametmp[0], 0777);
     $filenamelist = '"'.$filenametmp[0].'" '; # добавление в список файлов для конвертации
     # проверка временого файла
-    if (!file_exists($filenametmp[0])) return exitError("создание временого файла подназванию ".$filename[0]." не прошла успешно", 110);
+    if (!file_exists($filenametmp[0])) return exitError("создание временного файла под названием ".$filename[0]." не прошла успешно", 110);
     return 0;
 }
 
@@ -117,7 +118,50 @@ function pushOneNewFile() {
     return api_json_result($res);
 }
 
-global $apikey, $typeconvert, $file, $filename, $fileout;
+# функции для работы с утилитами и одни или несколькоми файлами на входе и навыходе: <один, несколько><утилита>To<один, несколько>
+function SeveralImageToOne($n, $h) {
+    $error = checkSeveralFromFile($n);
+    if ($error !== 0) return $error;
+    $error = checkOneInFile($h);
+    if ($error !== 0) return $error;
+    $error = createSeveralTmpFile();
+    if ($error !== 0) return $error;
+    createOneConvFile();
+    paraForConvImage();
+    convImage();
+    deleteSeveralTmpFile();
+    return pushOneNewFile();
+}
+
+function OneImageToOne($n, $h) {
+    $error = checkSeveralFromFile($n);
+    if ($error !== 0) return $error;
+    $error = checkOneInFile($h);
+    if ($error !== 0) return $error;
+    $error = createOneTmpFile();
+    if ($error !== 0) return $error;
+    createOneConvFile();
+    paraForConvImage();
+    convImage();
+    deleteOnetmpFile();
+    return pushOneNewFile();
+}
+
+function OneLibreToOne($n, $h, $b) {
+    $error = checkOneFromFile($n);
+    if ($error !== 0) return $error;
+    $error = checkOneInFile($h);
+    if ($error !== 0) return $error;
+    $error = createOneTmpFile();
+    if ($error !== 0) return $error;
+    createOneConvFile();
+    paraForConvLibre();
+    convLibre($b);
+    deleteOnetmpFile();
+    return pushOneNewFile();
+}
+
+global $typeconvert, $file, $filename, $fileout;
 global $filenametmp, $execlog, $parametrs, $filenamelist, $filenewnametmp, $dirnewnametmp, $fileformat;
 
 $dirnewnametmp = '/tmp/out';
@@ -145,7 +189,8 @@ $informats = [
 ];
 
 # фильтры для libreoffice: тип конвертации => фильтр
-$librefilter = ["WriterToPdf"=>"writer_pdf_Export", "WriterToOdt"=>"writer8", "WriterToDoc"=>"MS Word 97",
+$librefilter = [
+    "WriterToPdf"=>"writer_pdf_Export", "WriterToOdt"=>"writer8", "WriterToDoc"=>"MS Word 97",
     "WriterToDocx"=>"MS Word 2007 XML", "WriterToRtf"=>"Rich Text Format", "WriterToHtml"=>"HTML (StarWriter)",
     "CalcToOds"=>"calc8", "CalcToXls"=>"MS Excel 97", "CalcToXlsx"=>"Calc MS Excel 2007 XML",
     "CalcToCsv"=>"Text - txt - csv (StarCalc)", "CalcToPdf"=>"calc_pdf_Export",
@@ -160,62 +205,24 @@ global $imagetopara, $imageparaname, $docparaname, $doctopara;
 $imageparaname = array('resize','quality','rotate','blur','bordercolor','border','delay','loop');
 $libreparaname = array('');
 
-$imagetopara = ['resize'=>'-resize','quality'=>'-quality','rotate'=>'-rotate','blur'=>'-blur','bordercolor'=>'-bordercolor',
-    'border'=>'-border','delay'=>'-delay','loop'=>'-loop'];
+$imagetopara = [
+    'resize'=>'-resize','quality'=>'-quality','rotate'=>'-rotate','blur'=>'-blur',
+    'bordercolor'=>'-bordercolor','border'=>'-border','delay'=>'-delay','loop'=>'-loop'
+];
 $librertopara = [''=>''];
 
 //return exitError("test",404);
+
 switch ($typeconvert) {
-    case 'ImageToImage': case 'ImageToPdf': case 'ImageToGif':
-        $error = checkSeveralFromFile($image); break;
+    case 'ImageToImage':
+        return OneImageToOne($image, $informats[$typeconvert]); break;
+    case 'ImageToPdf': case 'ImageToGif':
+        return SeveralImageToOne($image, $informats[$typeconvert]); break;
     case 'WriterToPdf': case 'WriterToOdt': case 'WriterToDoc': case 'WriterToDocx': case 'WriterToRtf': case 'WriterToHtml': 
-        $error = checkOneFromFile($writer); break;
+        return OneLibreToOne($writer, $informats[$typeconvert], $librefilter[$typeconvert]); break;
     case 'CalcToOds': case 'CalcToXls': case 'CalcToXlsx': case 'CalcToCsv': case 'CalcToPdf':
-        $error = checkOneFromFile($calc); break;
+        return OneLibreToOne($calc, $informats[$typeconvert], $librefilter[$typeconvert]); break;
     case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
-        $error = checkOneFromFile($impress);
+        return OneLibreToOne($impress, $informats[$typeconvert], $librefilter[$typeconvert]);
     default: return exitError($typeconvert." нету такого правила конвертирования", 100);
-} if ($error !== 0) return $error;
-
-$error = checkOneInFile($informats[$typeconvert]);
-if ($error !== 0) return $error;
-
-switch ($typeconvert) {
-    case 'ImageToPdf': case 'ImageToGif':
-        $error = createSeveralTmpFile(); break;
-    case 'ImageToImage': case 'WriterToPdf': case 'WriterToOdt': case 'WriterToDoc': case 'WriterToDocx': case 'WriterToRtf': case 'WriterToHtml':
-    case 'CalcToOds': case 'CalcToXls': case 'CalcToXlsx': case 'CalcToCsv': case 'CalcToPdf':
-    case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
-        $error = createOneTmpFile(); break;
-} if ($error !== 0) return $error; 
-
-createOneConvFile();
-
-switch ($typeconvert) {
-    case 'ImageToImage': case 'ImageToPdf': case 'ImageToGif':
-        paraForConvImage(); break;
-    case 'WriterToPdf': case 'WriterToOdt': case 'WriterToDoc': case 'WriterToDocx': case 'WriterToRtf': case 'WriterToHtml':
-    case 'CalcToOds': case 'CalcToXls': case 'CalcToXlsx': case 'CalcToCsv': case 'CalcToPdf':
-    case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
-        paraForConvLibre(); break;
 }
-
-switch ($typeconvert) {
-    case 'ImageToImage': case 'ImageToPdf': case 'ImageToGif':
-        convImage(); break;
-    case 'WriterToPdf': case 'WriterToOdt': case 'WriterToDoc': case 'WriterToDocx': case 'WriterToRtf': case 'WriterToHtml':
-    case 'CalcToOds': case 'CalcToXls': case 'CalcToXlsx': case 'CalcToCsv': case 'CalcToPdf':
-    case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
-        convLibre($librefilter[$typeconvert]); break;
-}
-
-switch ($typeconvert) {
-    case 'ImageToPdf': case 'ImageToGif':
-        deleteSeveralTmpFile(); break;
-    case 'ImageToImage': case 'WriterToPdf': case 'WriterToOdt': case 'WriterToDoc': case 'WriterToDocx': case 'WriterToRtf': case 'WriterToHtml':
-    case 'CalcToOds': case 'CalcToXls': case 'CalcToXlsx': case 'CalcToCsv': case 'CalcToPdf':
-    case 'ImpressToOdp': case 'ImpressToPpt': case 'ImpressToPptx': case 'ImpressToPdf':
-        deleteOnetmpFile(); break;
-}
-
-return pushOneNewFile();
