@@ -17,7 +17,7 @@ $from = array(
 	array($fromDir."WindFieldkit.png", $fromDir."result.pbm", $fromDir."ggg0.png", "-typeconvert", "ImageToPdf", $out."ImageToPdf.pdf"),
 
 	array($fromDir."pp01.png", $fromDir."pp02.png", $fromDir."pp03.png", $fromDir."pp04.png", $fromDir."pp05.png", $fromDir."pp06.png", 
-		"-typeconvert", "ImageToGif", "-delay", "20", "-loop", "1", $out."ImageToGif.gif"),
+		"-typeconvert", "ImageToGif", "-delay", "20", "-loop", "0", $out."ImageToGif.gif"),
 
 	array($fromDir."t.docx", "-typeconvert", "WriterToOdt", $out."WriterToOdt.odt"),
 	array($fromDir."t.docx", "-typeconvert", "WriterToDoc", $out."WriterToDoc.doc"),

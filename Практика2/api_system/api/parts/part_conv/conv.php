@@ -1,7 +1,21 @@
 <?php
 
+# чтение файла и перевод в base64, без сохранение файла в памяти
+function base64_encode_stream($path)
+{
+    $fp = fopen($path, 'rb');
+    $result = ''; $bufferSize = 1024 * 3;
+    while (!feof($fp)) {
+        $chunk = fread($fp, $bufferSize);
+        if ($chunk === false) break;
+        $result .= base64_encode($chunk);
+        unset($chunk);
+    }
+    fclose($fp); return $result;
+}
+
 # прикрощение работы и отправки ошибки: $n информация об ошибке, $b номер ошибки
-function exitError($n, $b) { $res['errors'] = $n; $res['error'] = $b; return api_json_result($res); }
+function exitError($n, $b) { global $execlog; $res['errors'] = $n; $res['error'] = $b; /*$res["log"] = $execlog;*/ return api_json_result($res); }
 
 # создание временного файл: $n название файла, $d данные файла, возращает путь к файлу
 function createTmpFile($n, $d) { $n = '/tmp/'.md5(time().rand()).$n; file_put_contents($n, base64_decode($d)); return $n; }
@@ -94,10 +108,18 @@ function convImage() {
 # конвертация для правил: WriterToPdf
 function convLibre($n) {
     global $execlog, $filenamelist, $parametrs, $filenewnametmp, $dirnewnametmp, $fileformat, $filenametmp;
-    $execlog = "libre ". exec('libreoffice --headless '.$parametrs.'--convert-to "'.$fileformat.':'.$n.'" '.$filenamelist.'--outdir '.$dirnewnametmp);
+    $tmp = '/libre/'.md5(time().rand());
+    exec('export HOME=/tmp'.$tmp.' && '.
+        'libreoffice --headless --convert-to "'.$fileformat.':'.$n.'" '.$filenamelist.
+        '--outdir '.$dirnewnametmp.' 2>&1' , $execlog["libre out"], $execlog["libre code"]);
+    $execlog["libre cmd"] = 'export HOME=/tmp'.$tmp.' && '.
+        'libreoffice --headless --convert-to "'.$fileformat.':'.$n.'" '.$filenamelist.
+        '--outdir '.$dirnewnametmp.' 2>&1';
     $f = $dirnewnametmp.'/'.substr($filenametmp[0],strrpos($filenametmp[0],'/')+1);
     $f1 = substr($f,0,strrpos($f,'.')).'.'.$fileformat;
-    $execlog .= "\nmv " . exec('mv "'.$f1.'" "'.$filenewnametmp.'"');
+    exec('mv "'.$f1.'" "'.$filenewnametmp.'"');
+    $execlog["mv cmd"] = 'mv "'.$f1.'" "'.$filenewnametmp.'"';
+    exec("rm -r /tmp".$tmp);
 }
 
 # удаление временого файла
@@ -111,10 +133,11 @@ function pushOneNewFile() {
     global $filenewnametmp, $fileout;
     # проверка сканвертированого
     if (!file_exists($filenewnametmp)) return exitError("конвертация не прошла успешно", 111);
-    $newfile = base64_encode(file_get_contents($filenewnametmp)); # полученое содержимого сконвертированого файла
+    //$res['file'] = base64_encode(file_get_contents($filenewnametmp)); # полученое содержимого сконвертированого файла
+    $res['file'] = base64_encode_stream($filenewnametmp); # полученое содержимого сконвертированого файла
     unlink($filenewnametmp); # удаление сконвертированого временого файла
     # все норм, утверждаем это
-    $res['errors'] = ""; $res['error'] = 0; $res['file'] = $newfile; $res['filename'] = $fileout;
+    $res['errors'] = ""; $res['error'] = 0; $res['filename'] = $fileout;
     return api_json_result($res);
 }
 
