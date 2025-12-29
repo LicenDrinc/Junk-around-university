@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?php
 
+while (!file_exists('/tmp/t'));
+
 function edb_api_check($address,$command,$data,$ssl_verify=false)
 {
     $data_string = json_encode ($data, JSON_UNESCAPED_UNICODE);
