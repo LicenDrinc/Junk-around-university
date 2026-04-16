@@ -1,0 +1,17 @@
+﻿1CV8LOG(ver 2.0)
+498f16dc-7af2-4c0b-bbec-f9fb9e5e412e
+
+{1,071523a4-516f-4fce-ba4b-0d11ab7a1893,"",1},
+{2,"PortableLicen",1},
+{3,"Designer",1},
+{4,"_$Session$_.Authentication",1},
+{13,1,1},
+{4,"_$Session$_.Start",2},
+{4,"_$InfoBase$_.ConfigUpdate",3},
+{4,"_$InfoBase$_.DBConfigUpdateStart",4},
+{4,"_$InfoBase$_.DBConfigUpdate",5},
+{3,"1CV8C",2},
+{4,"_$PerformError$_",6},
+{4,"_$Session$_.Finish",7},
+{3,"BackgroundJob",3},
+{3,"1CV8",4}
