@@ -1,0 +1,13 @@
+* text=auto
+
+*.1CD -filter -diff -merge
+*.lgx -filter -diff -merge
+*.lgf -filter -diff -merge
+*.psd -filter -diff -merge
+*.lgp -filter -diff -merge
+*.jpg -filter -diff -merge
+*.webp -filter -diff -merge
+*.txt -filter -diff -merge
+*.bpmn -filter -diff -merge
+*.png -filter -diff -merge
+*.pptx -filter -diff -merge
