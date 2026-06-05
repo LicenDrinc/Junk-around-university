@@ -1,0 +1,26 @@
+﻿1CV8LOG(ver 2.0)
+3b10a10d-437f-4886-ae1a-f3b84dfe835d
+
+{1,071523a4-516f-4fce-ba4b-0d11ab7a1893,"",1},
+{2,"PortableLicen",1},
+{3,"Designer",1},
+{4,"_$Session$_.Authentication",1},
+{13,1,1},
+{4,"_$Session$_.Start",2},
+{4,"_$InfoBase$_.ConfigUpdate",3},
+{4,"_$InfoBase$_.DBConfigUpdateStart",4},
+{4,"_$InfoBase$_.PredefinedDataUpdate",5},
+{5,c2c54307-1da4-48b3-b5f6-92eada886f5a,"",1},
+{4,"_$InfoBase$_.DBConfigUpdate",6},
+{3,"1CV8C",2},
+{4,"_$Transaction$_.Begin",7},
+{4,"_$Data$_.New",8},
+{5,c2c54307-1da4-48b3-b5f6-92eada886f5a,"Справочник.Товары",1},
+{4,"_$Transaction$_.Commit",9},
+{5,cf0eea0d-9bd9-4ff1-822f-9b2a1ff78b50,"Документ.ПоступлениеТоваров",2},
+{4,"_$Data$_.Post",10},
+{4,"_$Data$_.Update",11},
+{3,"BackgroundJob",3},
+{4,"_$Session$_.Finish",12},
+{5,3cb1ecce-65be-40ae-bc50-a729037fce84,"Документ.ПродажаТоваров",3},
+{4,"_$Data$_.Unpost",13}

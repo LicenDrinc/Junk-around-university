@@ -1,0 +1,651 @@
+﻿<HTML><HEAD><TITLE></TITLE>
+<STYLE>TD {
+	FONT-SIZE: 10pt
+}
+TH {
+	FONT-SIZE: 10pt
+}
+A:link {
+	COLOR: #cc0000; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #cc0000; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+H1 {
+	TEXT-ALIGN: left; FONT-FAMILY: Arial, Tahoma; COLOR: #003366; FONT-SIZE: 18pt; FONT-WEIGHT: bold
+}
+H2 {
+	TEXT-ALIGN: left; FONT-FAMILY: Arial, Tahoma; FONT-SIZE: 14pt; FONT-WEIGHT: bold
+}
+H3 {
+	TEXT-ALIGN: left; FONT-FAMILY: Arial, Tahoma; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+.withBorder {
+	TEXT-ALIGN: left; FONT-FAMILY: Verdana; BORDER-TOP: #ffd700 1px solid; BORDER-RIGHT: #ffd700 1px solid
+}
+.withBorder TD {
+	BORDER-BOTTOM: #ffd700 1px solid; BORDER-LEFT: #ffd700 1px solid
+}
+.withBorder TH {
+	BORDER-BOTTOM: #ffd700 1px solid; BORDER-LEFT: #ffd700 1px solid; BACKGROUND-COLOR: #ffffee
+}
+UL.TOC LI {
+	LIST-STYLE-TYPE: none
+}
+.important {
+	PADDING-BOTTOM: 15px; BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #ffeeee; PADDING-LEFT: 15px; WIDTH: 95%; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 15px
+}
+BODY {
+	FONT-FAMILY: Verdana; FONT-SIZE: 80%
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 80%
+}
+</STYLE>
+
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<SCRIPT>
+ function copySource(oButton){
+   if(window.clipboardData){
+     window.clipboardData.setData('Text',oButton.nextSibling.innerText);
+     alert('Текст помещен в буфер обмена');
+   }else{
+     alert('Данная функция поддерживается только в браузере Internet Explorer');
+   }
+ }
+ </SCRIPT>
+
+<META name=GENERATOR content="MSHTML 9.00.8112.16457"></HEAD>
+<BODY>
+<TABLE id=table1 border=0 cellSpacing=0 cellPadding=8 width="100%" bgColor=#ffffd6>
+<TBODY>
+<TR>
+<TD>
+<H1 style="FONT-FAMILY: Verdana; COLOR: #823602; FONT-SIZE: 25pt">1С:Предприятие</H1>
+<H2 style="FONT-FAMILY: Verdana; COLOR: #c10000; FONT-SIZE: 19pt">Типовые конфигурации<BR>Торговля и склад 7.7,&nbsp;Розница 8 (версия 2.0)</H2></TD></TR></TBODY></TABLE>
+<H3 style="BORDER-BOTTOM: #c10000 2px solid"><FONT color=#c10000 size=5 face=Arial><EM>Руководство по переходу с&nbsp;«Торговля и склад 7.7» на «Розница 8 (версия 2.0)»</EM></FONT></H3>
+<P></P>
+<UL class=TOC>
+<LI><A href="#ref0">Выгрузка данных из Торговля и склад 7.7</A> 
+<UL class=TOC>
+<LI><A href="#ref14">Ограничения выгрузки данных</A>&nbsp; 
+<LI><A href="#ref1">Предварительные действия</A> 
+<LI><A href="#ref2">Выгрузка данных в файл обмена</A></LI></UL>
+<LI><A href="#ref3">Загрузка данных</A> 
+<UL class=TOC>
+<LI><A href="#ref4">Предварительные действия</A> 
+<LI><A href="#ref5">Загрузка данных из файла обмена в Розница 8</A> 
+<LI><A href="#ref6">Заполнение справочников</A> 
+<LI><A href="#ref7">Проведение документов ввода начальных остатков</A> 
+<LI><A href="#ref8">Проверка корректности перенесенных учетных данных</A></LI></UL>
+<LI><A href="#ref10">Перенос объектов при переходе</A> 
+<UL class=TOC>
+<LI><A href="#ref12">Соответствие объектов</A> 
+<LI><A href="#ref13">Сопоставление объектов при переносе данных</A> </LI></UL></LI></UL>
+<H2 id=ref0>Выгрузка данных из Торговля и склад 7.7</H2>
+<H3 id=ref14>Ограничения выгрузки данных</H3>
+<UL>
+<LI>Отрицательные данные по остаткам товаров не переносятся 
+<LI>Отрицательные данные по себестоимости товаров не переносятся 
+<LI>Отрицательные данные по остаткам денежных средств в операционных кассах не переносятся 
+<LI>Данные по остаткам денежных средств&nbsp;<span lang="ru">в денежных ящиках</span>&nbsp;контрольно-кассовых машин&nbsp;не переносятся 
+<LI>Цены<span lang="ru">,</span> рассчитываемые динамически<span lang="ru">,</span> не переносятся.&nbsp; 
+<LI>Не формируются документы ввода начальных остатков, в которых нет 
+<span lang="ru">товарных </span>строк 
+<LI>При переносе данных из Торговля и склад 7.7 множественные виды свойств объектов и свойства таких видов не переносятся&nbsp;&nbsp;</LI></UL>
+<H3 id=ref1>Предварительные действия</H3>
+<OL>
+<LI>Выполните резервное копирование информационной базы конфигурации <STRONG>Торговля и склад 7.7 (Аспект 7.7)</STRONG>. 
+Если версия конфигурации <STRONG>Торговля и склад 7.7&nbsp; </STRONG>ниже 
+7.70.974&nbsp;, то проведите обновление конфигурации до указанной или более поздней 
+версии. 
+<LI>Закройте кассовые смены и инкассируйте денежные средства <span lang="ru">из</span> контрольно-кассовых машин. 
+<LI>Проверьте актуальность курсов валют. 
+<LI>Для верификации данных по остаткам целесообразно провести инвентаризацию товарных остатков и остатков денежных средств. Устраните отрицательные данные по остаткам товаров, остаткам денежных средств в исходных базах.&nbsp; 
+<LI>Выполните все регламентные процедуры в конфигурации <STRONG>Торговля и склад 7.7</STRONG>: удалите помеченные объекты, установите дату актуальности итогов, при необходимости восстановите границу последовательности документов. </LI></OL>
+<H3 id=ref2>Выгрузка данных в файл обмена</H3>
+<OL>
+<LI>Внешняя обработка для выгрузки данных и файл правил обмена находятся в каталоге поставки конфигурации <STRONG>Розница 8</STRONG> в подкаталоге <STRONG>Conv77_8</STRONG>. 
+<LI>Откройте внешнюю обработку&nbsp;<STRONG>Tr77_Rt20.ert</STRONG> с помощью пункта меню <STRONG>Файл - Открыть</STRONG>. В появившемся диалоге укажите путь к файлу правил обмена&nbsp;<STRONG>Tr77_Rt20.xml&nbsp;</STRONG>и имя внешнего файла обмена, в который будет производиться выгрузка данных. После этого нажмите на кнопку <STRONG>Загрузить правила обмена</STRONG>. 
+<LI>В диалоговом окне появится список объектов, которые могут быть выгружены (это может занять некоторое время). По умолчанию будет выгружена информация по константам, справочникам и остаткам, рекомендуемым к выгрузке. При необходимости можно отключить выгрузку информации по любому из справочников или отключить выгрузку остатков. Для задания даты выгрузки остатков используется параметр <STRONG>Дата выгрузки</STRONG>. В случае необходимости можно настроить параметры и задать условия отбора данных. </LI></OL>
+<P align=center><IMG src="PIC\PIC2.png"></P>
+<P><BR><BR>Параметры выгрузки данных устанавливаются на закладке <STRONG>Параметры</STRONG>: </P>
+<UL>
+<LI>Выгрузка в базовую версию <BR>Параметр применяется при выгрузке в базовую версию <STRONG>Розница 8 (версия 2.0)</STRONG>. <BR>Если флаг установлен, то при выгрузке данных будет произведена фильтрация выгружаемых справочников и учетных данных по организации, заданной в параметре <STRONG>Организация (для базовой версии)</STRONG>. 
+<LI>Организация&nbsp;(для базовой версии) <BR>Параметр применяется&nbsp;только при установленном параметре <STRONG>Выгрузка в базовую версию</STRONG>. В базовую версию Розница 8 будут выгружены данные по указанной организации. 
+<LI>Количество строк в документах. <BR>Допустимые значения - [0,99999]. Значение по умолчанию - 1000. <BR>Формируемые по учетным данным документы разбиваются по количеству строк в ТЧ, указанном в параметре. <BR>Количество строк в документе не может быть более 100000(ограничение 1С: Предприятие 8). 
+<LI>Разделитель телефонов <BR>Значение по умолчанию ",". <BR>Так как в <STRONG>Торговля и склад 7.7</STRONG> в поле <STRONG>Телефон</STRONG> может быть указано несколько телефонов через символ-разделитель, для переноса данных необходимо указать значение символа-разделителя. 
+<LI>Магазин по умолчанию&nbsp;<BR>Если параметр задан, то в конфигурации <STRONG>Розница 8 (версия 2.0)</STRONG> будет создан магазин, которым заполняться соответствующие реквизиты справочников "Склады", "Кассы", "Кассы ККМ", а так же документы "Оприходование товаров" и "Ввод остатков расчетов с поставщиками"<BR></LI></UL>
+<P align=center><IMG src="PIC\PIC3.png"></P>
+<P>После настройки правил выгрузки данных необходимо нажать на кнопку <STRONG>Выгрузить</STRONG>. Данные будут выгружены в файл обмена. </P>
+<H2 id=ref3>Загрузка данных</H2>
+<P id=ref4 class=important>Последовательно выполните действия, описанные ниже.</P>
+<H3>Предварительные действия</H3>
+<OL>
+<LI>Произведите установку конфигурации <STRONG>Розница 8 (версия 2.0)</STRONG>. Создайте новую информационную базу конфигурации <STRONG>Розница 8 (версия 2.0)</STRONG>. 
+<LI>Настройте параметры учета подсистема "Настройка и администрирование", а также введите первоначальную информацию, которую не планируется переносить из информационной базы конфигурации <STRONG>Торговля и склад 7.7</STRONG>.</LI></OL>
+<H3 id=ref5>Загрузка данных из файла обмена в Розница 8 (версия 2.0)</H3>
+<P>Для загрузки данных выберите пункт меню&nbsp;<STRONG>Все функции&nbsp;-&nbsp;Обработки -&nbsp;Универсальный обмен данными в формате XML</STRONG>. В открывшемся диалоге на закладке <STRONG>Загрузка данных</STRONG> укажите режим работы на сервере, файл обмена, в который была произведена выгрузка, и нажмите на кнопку <STRONG>Загрузить данные</STRONG>. Данные будут загружены в информационную базу из файла обмена. </P>
+<P align=center><IMG src="PIC\PIC4.png"></P>
+<H3 id=ref6>Заполнение прав пользователей</H3>
+<UL>
+<LI>Необходимо настроить дополнительные права пользователей (Настройка и администрирование - Настройки пользователей и прав)<STRONG>.</STRONG></LI></UL>
+<H3>Заполнение справочников</H3>
+<UL>
+<LI>В справочнике <STRONG>Магазины </STRONG>(Справочники - Магазины) создать и заполнить информацию о магазинах предприятия. При создании магазинов можно выбирать склады из ранее переданных из конфигурации <STRONG>Торговля и склад 7.7.</STRONG></LI></UL>
+<P align=center><IMG src="PIC\PIC7.png"></P>
+<UL>
+<LI>В справочнике <STRONG>Склады </STRONG>(Нормативно-справочная информация - Склады),&nbsp;в справочнике <STRONG>Кассы </STRONG>(Нормативно-справочная информация - Кассы), в справочнике <STRONG>Кассы ККМ </STRONG>(Нормативно-справочная информация - Кассы ККМ)&nbsp;в каждом элементе справочника заполнить информацию о магазине и организации. 
+<LI>Необхимо задать <STRONG>Наборы дополнительных реквизитов и сведений</STRONG> (Настройка и администрирование - общие настройки - Наборы дополнительных реквизитов и сведений).</LI></UL>
+<H3 id=ref7>Проведение документов</H3>
+<UL>
+<LI><span lang="ru">В р</span>егламентной обработке проведения документов (Все функции - Проведение докеументов)&nbsp; выбрать из доступных документов: "Установка себестоимости", "Установка цен номенклатуры", "Ввод остатков денежных средств"&nbsp;и "Ввод остатков
+<span lang="ru">расчетов с поставщиками</span>", задать период равный дате выгрузки, установить режим проведения: "Проводить непроведенные документы" и нажать кнопку "Провести".</LI></UL>
+<P align=center><IMG src="PIC\PIC8.png"></P>
+<P>Заполнение документов ввода начальных остатков</P>
+<UL>
+<LI>В документе <STRONG>Оприходование товаров</STRONG> (Склад - Оприходование товаров)&nbsp;в каждом документе заполнить магазин и организацию, а так же учетные цены номенклатуры (можно воспользоваться сервисом заполнения цен). Провести документ. </LI></UL>
+<H3 id=ref8>Проверка корректности перенесенных учетных данных</H3>
+<P>При переходе с <STRONG>Торговля и склад 7.7</STRONG>: 
+<UL>
+<LI>Для сверки данных по остаткам товаров на складах в <STRONG>Торговля и склад 7.7</STRONG> используйте отчеты <STRONG>Ведомость по остаткам ТМЦ </STRONG>и <STRONG>Остатки ТМЦ</STRONG>, в <STRONG>Розница 8 (версия&nbsp;2.0)&nbsp;</STRONG>отчет <STRONG>Ведомость по товарам на складах </STRONG>(Склад - Отчеты по складу - Остатки на складах). 
+<LI>Для сверки данных по остаткам денежных средств операционных кассах в <STRONG>Торговля и склад 7.7</STRONG> используйте отчет <STRONG>Ведомость по кассе</STRONG> и рублевые показатели остатков в кассе, в <STRONG>Розница 8 (версия 2.0)</STRONG>&nbsp;используйте <STRONG>Остатки и движения денежных средств</STRONG> (Финансы - Отчеты по финансам - Наличные денежные средства). 
+<LI>Для сверки данных по себестоимости номенклатуры в <STRONG>Торговля и склад 7.7</STRONG> используйте отчет <STRONG>Ведомость по партиям ТМЦ </STRONG>(установить "Бух. учет с НДС", дата окончания отчета = Дате выгрузки, без разделения по юр.лицам, детализация только по номеклатуре в основных единицах измрения), в <STRONG>Розница 8 (версия 2.0)</STRONG>используйте отчет <STRONG>Стоимостная оценка склада </STRONG>(Склад - Отчеты по складу - Оценка склада (в розничных цена)). Себестоимость выгружается только с НДС. 
+<LI>Для сверки данных по ценам номенклатуры в <STRONG>Торговля и склад 7.7</STRONG> используйте обработку <STRONG>Печать прайс-листа</STRONG> (переключатель "Позиции прайс-листа" установить в позицию "Все"), в <STRONG>Розница 8 (версия 2.0)</STRONG>&nbsp;используйте <STRONG>Цены (по видам цен)</STRONG> (Маркетинг - Отчеты по маркетингу - Цены (по видам цен)). 
+<LI>Для сверки данных по расчетам поставщиков в <STRONG>Торговля и склад 7.7</STRONG> используйте отчет <STRONG>Ведомость по контрагентам</STRONG> (вид отчета установить в позицию "По поставщикам",&nbsp; установить "В валюте бух. учета"), в <STRONG>Розница 8 (версия 2.0)</STRONG> используйте отчет <STRONG>Состояние расчетов с поставщиками</STRONG> (Запасы и закупки - Отчеты по запасам и закупки - Состояние расчетов с поставщиками)</LI></UL>
+<P></P>
+<P>Если перенесенные данные не верны, то рекомендуется внести изменения в исходные базы,&nbsp;удалить в Рознице сформированные документы внесения первоначальных остатков и повторно выгрузить и загрузить данные, установив по необходимости новую дату выгрузки.</P>
+<P></P>
+<H2 id=ref10>Перенос объектов при переходе</H2>
+<h3 id=ref12><span lang="ru">Соответствие</span> объектов</h3>
+<P>
+<TABLE class=withBorder cellSpacing=0 cellPadding=5 width="100%">
+<TBODY>
+<TR>
+<TD vAlign=top width=213>
+<P style="TEXT-ALIGN: center" align=center><FONT size=1><STRONG><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Торговля и склад 7.7</SPAN></STRONG></FONT></P></TD>
+<TD vAlign=top width=213>
+<P style="TEXT-ALIGN: center" align=center><FONT size=1><STRONG><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Розница 8</SPAN></STRONG></FONT></P></TD>
+<TD  vAlign=top width=378>
+<p style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: 0pt; text-align:center">
+<b>Примечания</b></TD></TR>
+<TR>
+<TD vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><B><I><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Константы</SPAN></I></B></FONT></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Показывать артикул</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Дополнительная колонка печатных форм документов</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Если в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>константа «Показывать артикул» установлена в значение «1», то константа «Дополнительная колонка печатных форм документов» в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8 </SPAN></STRONG>устанавливается в значение «Артикул»</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Использовать упаковки номенклатуры</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Если в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>используются единица измерения отличные от основных единиц изменения номенклатуры с коэффициентом не равным «1», то в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">константа устанавливается значение в «Истина»</SPAN></STRONG></FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Вид основного свойства контрагентов, Вид основного свойства номенклатуры</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Использовать дополнительные реквизиты и сведения</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Если в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>одна из констант установлена, то в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">константа устанавливается значение в «Истина»</SPAN></STRONG></FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Использовать автоматические скидки в продажах</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Если в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>заполнен справочник «Скидки» , то в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">константа устанавливается значение в «Истина»</SPAN></STRONG></FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><B><I>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Перечисления</SPAN></I></B></FONT></P></TD></TR>
+<TR>
+<TD vAlign=top width=213 height="50">
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Виды</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"> н</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>оменклатуры</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213 height="50">
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Типы номенклатуры</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378 height="50">
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>В <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> формируются виды номенклатуры с 2 типами номенклатуры - <STRONG><SPAN style="FONT-FAMILY: Verdana">Товар</SPAN></STRONG> и <STRONG><SPAN style="FONT-FAMILY: Verdana">Услуга</SPAN></STRONG>. У созданного вида номенклатуры признак использования характеристик устанавливается в значение 
+<B>«</B><STRONG><SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">Не использовать»</SPAN><SPAN style="FONT-FAMILY: Verdana">.</SPAN></STRONG></FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Ставки НДС</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Ставки НДС</SPAN></FONT></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><B><I>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Нормативно-справочная информация</SPAN></I></B></FONT></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><B>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>Базовая информация</SPAN></B></FONT></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Классификатор единиц измерений</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt">
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US><FONT size=2>Единицы измерения</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Банки</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt">
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US><FONT size=2>Классификатор банков РФ</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Классификатор стран мира</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt">
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US><FONT size=2>Страны мира</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3 height="15">
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Предприятие</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Собственные юридические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt">
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US><FONT size=2>Организации</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> в справочнике <STRONG><SPAN style="FONT-FAMILY: Verdana">Организации</SPAN></STRONG> создается один элемент, равный значению, указанному в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG> при выгрузке данных.</FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Дополнительно передается контактная информация.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Банковские счета</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Банковские счета организаций</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> в справочнике 
+<B>Банковские счета организаций</B> передаются элементы у которых реквизит «Юридическое или физическое лицо», равный значению, указанному в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG> при выгрузке данных.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Собственные юридические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Ответственные лица организаций</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> передаются ответственные лица организаций по Организации, указанной в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG> при выгрузке данных.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Склады</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Склады</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> реквизит <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация</SPAN></STRONG> у элементов справочника <STRONG><SPAN style="FONT-FAMILY: Verdana">Склады </SPAN></STRONG>заполнен значением, указанным в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии) </SPAN></STRONG>при выгрузке данных. </FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Кассы</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Кассы</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Передаются данные только операционные кассы, не имеющие положительных остатков.</FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> реквизит <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация</SPAN></STRONG> у элементов справочника <STRONG><SPAN style="FONT-FAMILY: Verdana">Склады </SPAN></STRONG>заполнен значением, указанным в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии) </SPAN></STRONG>при выгрузке данных.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Кассы</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Кассы ККМ</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Передаются данные только контрольно-кассовые машины.</FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: в <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> реквизит <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация</SPAN></STRONG> у элементов справочника <STRONG><SPAN style="FONT-FAMILY: Verdana">Склады </SPAN></STRONG>заполнен значением, указанным в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии) </SPAN></STRONG>при выгрузке данных.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Номенклатура</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Номенклатура</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Номенклатура</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>В <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG> реквизит «Набор упаковок» устанавливается в значение «Индивидуальный для номенклатуры», если в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">для номенклатуры заданы единицы измерения отличные от основной единицы изменения.</SPAN></STRONG></FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><STRONG>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: normal; ">Дополнительно передаются дополнительные реквизиты.</SPAN></STRONG></FONT></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Единицы</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Упаковки номенклатуры</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>В <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; "> передаются единицы измерения отличные от основных единиц изменения номенклатуры</SPAN></STRONG></FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Единицы</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Штрихкоды</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Контрагенты</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Контрагенты</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Контрагенты</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Дополнительно передается контактная информация.</FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1><STRONG>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: normal; ">Дополнительно передаются дополнительные реквизиты.</SPAN></STRONG></FONT></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Банковские счета</SPAN></FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Банковские счета</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Физические лица</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Физические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Физические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN></STRONG>и<STRONG><SPAN style="FONT-FAMILY: Verdana"> Аспект 7.7 </SPAN></STRONG>переносятся код, наименование, комментарий. Дополнительно передается контактная информация.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Физические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Документы физических лиц, Виды документов физических лиц</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Физические лица</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>ФИО физических лиц</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Ценообразование</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Типы цен</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Виды цен</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Прочие</FONT></SPAN></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Виды свойств</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Дополнительные реквизиты и сведения</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Значения свойств</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Значения свойств объекта</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Пользователи</FONT></SPAN></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Пользователи</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>&nbsp;</FONT></SPAN></P></TD></TR>
+<TR>
+<TD  vAlign=top width=803 colSpan=3>
+<P style="MARGIN: 0cm 0cm 0pt"><B><I>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US><FONT size=2>Ввод начальных остатков</FONT></SPAN></I></B></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Оприходование товаров</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG>: в качестве входящих данных используются данные регистра <STRONG><SPAN style="FONT-FAMILY: Verdana">Остатки ТМЦ</SPAN></STRONG> на дату выгрузки, указанную при выгрузке данных<STRONG><SPAN style="FONT-FAMILY: Verdana">.</SPAN></STRONG></FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG> на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: на выгружаемые данные регистра дополнительно устанавливается фильтр по организации, указанной в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG>.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Кассы,</FONT></SPAN></P>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Ввод остатков денежных средств</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG>: в качестве входящих данных используются данные регистра <STRONG><SPAN style="FONT-FAMILY: Verdana">Касса</SPAN></STRONG> на дату выгрузки, указанную при выгрузке данных<STRONG><SPAN style="FONT-FAMILY: Verdana">.</SPAN></STRONG></FONT></SPAN></P>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>В <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">с</SPAN></STRONG>оздаются элементы справочника Кассы в разрезе организаций, по которым есть положительные остатки в <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7 </SPAN>
+<SPAN style="FONT-FAMILY: Verdana; FONT-WEIGHT: normal; ">по регистру Кассы</SPAN></STRONG></FONT></SPAN></P>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG> на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: на выгружаемые данные регистра дополнительно устанавливается фильтр по организации, указанной в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG>.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Ввод остатков расчетов с поставщиками</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG>: в качестве входящих данных используются данные регистра <B>Взаиморасчеты поставщиков</B> на дату выгрузки, указанную при выгрузке данных<STRONG><SPAN style="FONT-FAMILY: Verdana">.</SPAN></STRONG></FONT></SPAN></P>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG> на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: на выгружаемые данные регистра дополнительно устанавливается фильтр по организации, указанной в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG>.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Установка себестоимости</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG>: в качестве входящих данных используются данные регистра <STRONG><SPAN style="FONT-FAMILY: Verdana">Партии наличие </SPAN></STRONG>на дату выгрузки, указанную при выгрузке данных<STRONG><SPAN style="FONT-FAMILY: Verdana">. </SPAN></STRONG>Принятые партии не считаются собственными, данные по таким партиям не выгружаются.</FONT></SPAN></P>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG> на базовую версию <STRONG><SPAN style="FONT-FAMILY: Verdana">Розница 8</SPAN></STRONG>: на выгружаемые данные регистра дополнительно устанавливается фильтр по организации, указанной в параметре <STRONG><SPAN style="FONT-FAMILY: Verdana">Организация (для базовой версии)</SPAN></STRONG>.</FONT></SPAN></P>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>Себестоимость переносится только с НДС.</FONT></SPAN></P></TD></TR>
+<TR>
+<TD vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><FONT size=1>
+<SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&lt;</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">Расчет</SPAN><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>&gt;</SPAN></FONT></P></TD>
+<TD  vAlign=top width=213>
+<P style="MARGIN: 0cm 0cm 0pt"><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt">
+<FONT size=2>Установка цен номенклатуры</FONT></SPAN></P></TD>
+<TD  vAlign=top width=378>
+<P><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt"><FONT size=2>При переходе с <STRONG><SPAN style="FONT-FAMILY: Verdana">Торговля и склад 7.7</SPAN></STRONG>: в качестве входящих данных используются данные справочника <STRONG><SPAN style="FONT-FAMILY: Verdana">Цены</SPAN></STRONG> на дату выгрузки, указанную при выгрузке данных<STRONG><SPAN style="FONT-FAMILY: Verdana">.</SPAN></STRONG></FONT></SPAN></P></TD></TR></TBODY></TABLE></P>
+<P>&nbsp;</P>
+<H3 id=ref13>Сопоставление объектов при переносе данных</H3>
+<TABLE class=withBorder cellSpacing=0 cellPadding=5 width="100%">
+<TBODY>
+<TR>
+<TH colSpan=3>
+<P align=center><STRONG>Сопоставление объектов при переходе с Торговля и склад 7.7 на Розница 8</STRONG></P></TH></TR>
+<TR>
+<TH><STRONG>Торговля и склад 7.7</STRONG></TH>
+<TH><STRONG>Розница 8</STRONG></TH>
+<TH><STRONG>Поля сопоставления</STRONG></TH></TR>
+<TR>
+<TD colSpan=3><STRONG><EM><font size="2">Перечисления</font></EM></STRONG></TD></TR>
+<TR>
+<TD><font size="2">Виды номенклатуры</font></TD>
+<TD><font size="2">Справочник "Виды номенклатуры"</font></TD>
+<TD><font size="2">Наименование, Тип номенклатуры</font></TD></TR>
+<TR>
+<TD colSpan=3><EM><STRONG><font size="2">Справочники</font></STRONG></EM></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Классификатор единиц измерений</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>
+<FONT size=2>Единицы измерения</FONT></SPAN></TD>
+<TD><FONT size=2>Код</FONT></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Банки</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>
+<FONT size=2>Классификатор банков РФ</FONT></SPAN></TD>
+<TD><FONT size=2>Код, Это группа</FONT></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Классификатор стран мира</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>
+<FONT size=2>Страны мира</FONT></SPAN></TD>
+<TD><FONT size=2>Код</FONT></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Собственные юридические лица</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; " lang=EN-US>
+<FONT size=2>Организации</FONT></SPAN></TD>
+<TD><FONT size=2>ИНН (КПП), Наименование</FONT></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Банковские счета</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Банковские счета организаций</FONT></SPAN></TD>
+<TD><FONT size=2>Номер счета</FONT></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Склады</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Склады</FONT></SPAN></TD>
+<TD><FONT size=2>Код</FONT></TD></TR>
+<TR>
+<TD><font size="2">Кассы</font></TD>
+<TD><font size="2">Кассы</font></TD>
+<TD><font size="2">Наименование</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Кассы</SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Кассы ККМ</SPAN></TD>
+<TD><font size="2">Код, Наименование</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Номенклатура</SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Номенклатура</SPAN></TD>
+<TD><font size="2">Код, Это группа</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Единицы</SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Упаковки номенклатуры</SPAN></TD>
+<TD><font size="2">Владелец, Коэффициент, ОКЕИ, Наименование, Вес</font></TD></TR>
+<TR>
+<TD><font size="2">Контрагенты </font> </TD>
+<TD><font size="2">Контрагенты </font> </TD>
+<TD><font size="2">Код, Это группа</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Банковские счета</FONT></SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; "><FONT size=2>Банковские счета</FONT></SPAN></TD>
+<TD><font size="2">Номер счета, владелец</font></TD></TR>
+<TR>
+<TD><font size="2">Физические лица</font></TD>
+<TD><font size="2">Физические лица</font></TD>
+<TD><font size="2">Код, Это группа</font></TD></TR>
+<TR>
+<TD><font size="2">Типы цен</font></TD>
+<TD><font size="2">Виды цен</font></TD>
+<TD><font size="2">Наименование</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Виды свойств</SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Дополнительные реквизиты и сведения</SPAN></TD>
+<TD><font size="2">Наименование, Родитель, Это группа</font></TD></TR>
+<TR>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Значения свойств</SPAN></TD>
+<TD><SPAN style="FONT-FAMILY: Verdana; FONT-SIZE: 10pt; ">Значения свойств объекта</SPAN></TD>
+<TD><font size="2">Владелец, Наименование</font></TD></TR>
+<TR>
+<TD><font size="2">Пользователи</font></TD>
+<TD><font size="2">Пользователи</font></TD>
+<TD><font size="2">Наименование</font></TD></TR></TBODY></TABLE>
+<P>&nbsp;</P></BODY></HTML>

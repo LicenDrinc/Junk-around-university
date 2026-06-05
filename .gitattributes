@@ -1,6 +1,5 @@
 * text=auto
 
-*.1CD -filter -diff -merge
 *.lgx -filter -diff -merge
 *.lgf -filter -diff -merge
 *.psd -filter -diff -merge
@@ -11,3 +10,11 @@
 *.bpmn -filter -diff -merge
 *.png -filter -diff -merge
 *.pptx -filter -diff -merge
+
+*.1CD filter=lfs diff=lfs merge=lfs -text
+*.dt filter=lfs diff=lfs merge=lfs -text
+*.cfu filter=lfs diff=lfs merge=lfs -text
+*.dat filter=lfs diff=lfs merge=lfs -text
+*.cf filter=lfs diff=lfs merge=lfs -text
+*.efd filter=lfs diff=lfs merge=lfs -text
+

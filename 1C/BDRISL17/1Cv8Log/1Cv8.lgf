@@ -1,0 +1,24 @@
+﻿1CV8LOG(ver 2.0)
+15781f9a-39e9-409c-9c9f-4c28938e2d28
+
+{1,071523a4-516f-4fce-ba4b-0d11ab7a1893,"",1},
+{2,"PortableLicen",1},
+{3,"Designer",1},
+{4,"_$Session$_.Authentication",1},
+{13,1,1},
+{4,"_$Session$_.Start",2},
+{4,"_$InfoBase$_.ConfigUpdate",3},
+{4,"_$InfoBase$_.DBConfigUpdateStart",4},
+{4,"_$InfoBase$_.PredefinedDataUpdate",5},
+{5,25fedc89-3a4f-48f3-8ddb-d649dc5e41e8,"",1},
+{4,"_$InfoBase$_.DBConfigUpdate",6},
+{3,"1CV8C",2},
+{4,"_$Transaction$_.Begin",7},
+{4,"_$Data$_.New",8},
+{5,25fedc89-3a4f-48f3-8ddb-d649dc5e41e8,"Справочник.Товары",1},
+{4,"_$Transaction$_.Commit",9},
+{5,d391bfca-62ed-4cfb-bb5f-1753249060c6,"Документ.ЗакупкаТоваров",2},
+{4,"_$Data$_.Post",10},
+{5,560814b9-9fde-487a-9614-93671441f769,"Документ.ПродажаТоваров",3},
+{4,"_$Session$_.Finish",11},
+{4,"_$Transaction$_.Rollback",12}

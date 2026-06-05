@@ -1,0 +1,23 @@
+﻿1CV8LOG(ver 2.0)
+c478e0ee-54f9-4918-8402-4763d685570a
+
+{1,071523a4-516f-4fce-ba4b-0d11ab7a1893,"",1},
+{2,"PortableLicen",1},
+{3,"Designer",1},
+{4,"_$Session$_.Authentication",1},
+{13,1,1},
+{4,"_$Session$_.Start",2},
+{4,"_$InfoBase$_.ConfigUpdate",3},
+{4,"_$InfoBase$_.DBConfigUpdateStart",4},
+{4,"_$InfoBase$_.PredefinedDataUpdate",5},
+{5,75554956-5cc1-41b6-850a-b6d338b09be4,"",1},
+{4,"_$InfoBase$_.DBConfigUpdate",6},
+{3,"1CV8C",2},
+{4,"_$Transaction$_.Begin",7},
+{4,"_$Data$_.PredefinedDataInitialization",8},
+{5,75554956-5cc1-41b6-850a-b6d338b09be4,"Справочник.Валюты",1},
+{4,"_$Transaction$_.Commit",9},
+{4,"_$Data$_.Update",10},
+{5,5815fef0-035f-4760-8bd9-25e6667b7339,"РегистрСведений.КурсыВалют",2},
+{3,"BackgroundJob",3},
+{4,"_$Session$_.Finish",11}

@@ -1,0 +1,12 @@
+﻿Vendor=Фирма "1С"
+Name=РозницаБазовая
+Version=2.2.5.27
+AppVersion=8.3
+[Config1]
+Catalog=1С:Розница базовая/Розница базовая
+Destination=1C\RetailBase
+Source=1cv8.cf
+[Config2]
+Catalog=1С:Розница базовая/Розница базовая (демо)
+Destination=1C\DemoRetailBase
+Source=1Cv8.dt

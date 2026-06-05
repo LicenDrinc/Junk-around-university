@@ -1,0 +1,26 @@
+﻿1CV8LOG(ver 2.0)
+7378fce3-22cb-4200-81f0-f0198fa9b2b7
+
+{1,071523a4-516f-4fce-ba4b-0d11ab7a1893,"",1},
+{2,"PortableLicen",1},
+{3,"Designer",1},
+{4,"_$Session$_.Authentication",1},
+{13,1,1},
+{4,"_$Session$_.Start",2},
+{4,"_$InfoBase$_.ConfigUpdate",3},
+{4,"_$InfoBase$_.DBConfigUpdateStart",4},
+{4,"_$InfoBase$_.PredefinedDataUpdate",5},
+{5,bb74a525-10a9-4743-a025-f267e5a57eff,"",1},
+{4,"_$InfoBase$_.DBConfigUpdate",6},
+{3,"1CV8C",2},
+{4,"_$Session$_.Finish",7},
+{5,06078c73-e00d-4fe3-b2ed-23e2d3c993a0,"",2},
+{5,296ab476-a16d-4b46-817e-f05e693dd8e8,"",3},
+{4,"_$Transaction$_.Begin",8},
+{4,"_$Data$_.New",9},
+{5,06078c73-e00d-4fe3-b2ed-23e2d3c993a0,"Справочник.Предметы",2},
+{4,"_$Transaction$_.Commit",10},
+{5,296ab476-a16d-4b46-817e-f05e693dd8e8,"Справочник.Студенты",3},
+{4,"_$Data$_.Update",11},
+{4,"_$Data$_.Delete",12},
+{3,"BackgroundJob",3}

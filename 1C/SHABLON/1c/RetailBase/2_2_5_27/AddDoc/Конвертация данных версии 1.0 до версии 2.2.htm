@@ -1,0 +1,681 @@
+﻿<HTML><HEAD><TITLE>1С:Розница. Конвертация данных версии 1.0 до версии 2.0</TITLE>
+<META content=ru http-equiv=Content-Language>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<STYLE>TD {
+	FONT-SIZE: 80%
+}
+A:link {
+	TEXT-DECORATION: none; FONT-WEIGHT: bold; COLOR: #cc0000
+}
+A:visited {
+	TEXT-DECORATION: none; FONT-WEIGHT: bold; COLOR: #cc0000
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+H1 {
+	FONT-SIZE: 18pt; FONT-FAMILY: Arial, Tahoma; FONT-WEIGHT: bold; COLOR: #003366; TEXT-ALIGN: left
+}
+H2 {
+	FONT-SIZE: 14pt; FONT-FAMILY: Arial, Tahoma; FONT-WEIGHT: bold; TEXT-ALIGN: left
+}
+H3 {
+	FONT-SIZE: 12pt; FONT-FAMILY: Arial, Tahoma; FONT-WEIGHT: bold; TEXT-ALIGN: left
+}
+TABLE {
+	FONT-SIZE: 90%
+}
+BODY {
+	FONT-SIZE: 80%; FONT-FAMILY: Verdana
+}
+.withBorder {
+	BORDER-TOP: #ffd700 1px solid; FONT-FAMILY: Verdana; BORDER-RIGHT: #ffd700 1px solid; TEXT-ALIGN: left
+}
+.withBorder TD {
+	BORDER-BOTTOM: #ffd700 1px solid; BORDER-LEFT: #ffd700 1px solid
+}
+.withBorder TH {
+	BORDER-BOTTOM: #ffd700 1px solid; BORDER-LEFT: #ffd700 1px solid; BACKGROUND-COLOR: #ffffee
+}
+UL.TOC LI {
+	LIST-STYLE-TYPE: none
+}
+.Programtext {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier; COLOR: #0000ff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BACKGROUND-COLOR: #f0f0f0
+}
+PRE.Query {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier; COLOR: #000080
+}
+PRE.xml {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier; COLOR: #000080
+}
+PRE.vbcode {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier; COLOR: #000080
+}
+PRE {
+	FONT-SIZE: 10pt
+}
+.Marker {
+	BACKGROUND-COLOR: #ffff00
+}
+.heading {
+	BORDER-BOTTOM: #ffd700 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: #ffd700 1px solid; BACKGROUND-COLOR: #ffffee
+}
+.tip {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #eeffee
+}
+.tip TD {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #eeffee
+}
+.important {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #ffeeee
+}
+.important TD {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #ffeeee
+}
+.note {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #eeeeff
+}
+.note TD {
+	BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 95%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #eeeeff
+}
+.k {
+	COLOR: red
+}
+.c {
+	COLOR: green
+}
+.s {
+	COLOR: black
+}
+.n {
+	COLOR: black
+}
+.p {
+	COLOR: brown
+}
+.list {
+	FONT-SIZE: 80%; TEXT-ALIGN: right
+}
+.date {
+	FONT-SIZE: 80%; COLOR: green; TEXT-ALIGN: right
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 11.00.9600.18163">
+<SCRIPT>
+ function copySource(oButton){
+   if(window.clipboardData){
+     window.clipboardData.setData('Text',oButton.nextSibling.innerText);
+     alert('Текст помещен в буфер обмена');
+   }else{
+     alert('Данная функция поддерживается только в браузере Internet Explorer');
+   }
+ }
+ </SCRIPT>
+
+<STYLE>A.cbData {
+	FONT-SIZE: 8pt; TEXT-DECORATION: none; FONT-FAMILY: Courier New; BACKGROUND: #e6e6e6; BORDER-BOTTOM: #969696 1px solid; TEXT-ALIGN: right; MARGIN: 0px; DISPLAY: block
+}
+</STYLE>
+
+<STYLE>.Programtext {
+	MARGIN-TOP: 0pt
+}
+.Query {
+	MARGIN-TOP: 0pt
+}
+.xml {
+	MARGIN-TOP: 0pt
+}
+.vbcode {
+	MARGIN-TOP: 0pt
+}
+</STYLE>
+</HEAD>
+<BODY>
+<P class=date>04.08.2011</P>
+<H1>1С:Розница (базовая). Конвертация данных версии 1.0 до версии 2.2</H1>
+<P>Конвертация данных состоит из следующих этапов:</P>
+<OL>
+<LI>Регламентная подготовка данных в версии 1.0 к обновлению конфигурации 
+<LI>Обновление штатными средствами через файл cf с последнего релиза версии 1.0 до переходной конфигурации 
+<LI>Непосредственно конвертация данных в переходной конфигурации 
+<LI>Обновление штатными средствами через файл cfu с переходной конвертации данных до финальной версии<BR>&nbsp; </LI></OL>
+<H2>Сценарий конвертации</H2>
+<P><B>Действия в 1С:Розница версии 1.0</B></P>
+<UL>
+<LI><SPAN style="FONT-SIZE: 9.5pt; FONT-FAMILY: Verdana; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA"></SPAN>Файл обновления предназначен для перехода с версии 1.0.19. Если используется более младшая версия, то необходимо обновить конфигурацию. 
+<LI>Кассиры (старшие кассиры) закрывают смены. Если в результате учета денежные средства остались в кассах ККМ их следует перенести в операционные кассы. 
+<LI>Менеджеры внутренней логистики завершают операции перемещения по ордерной схеме 
+<LI>Администратор делает резервное копирование базы данных и проверяет бекап. 
+<LI>Если используется конфигурация версии 1.0.14.3 на платформе 8.1 необходимо сконвертировать конфиграцию под платформу 8.2 
+<LI>Администратор обновляет базу до переходной конфигурации. Файл обновления 1cv8.cf находится <SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Times New Roman">на сайте <A style="TEXT-DECORATION: underline; COLOR: blue; text-underline: single" href="https://releases.1c.ru/project/RetailBase10_82">https://releases.1c.ru/project/RetailBase10_82</A> </SPAN>в каталоге установленного релиза 1С:Розница 1.0. При использовании версии младше 1.0.19 необходимо обновить программу. В конфигураторе "Конфигурация – Поддержка – Обновить конфигурацию – Выбор файла обновления" и далее обновить конфигурацию базы данных 
+<LI>Для пользователя, под которым будет проведена конвертация (далее "Пользователь конвертации") данных необходимо добавить доступные роли: "Администрирование", "Запуск толстого клиента", "Запуск тонкого клиента", "Полные права". Рекомендуется сразу установить Режим запуска "Управляемое приложение"</LI></UL>
+<P><B>Действия в конфигурации 1С:Розница 2.2 (конвертация с версии 1.0)</B></P>
+<UL>
+<LI>Администратор запускает систему под Пользователем конвертации. 
+<LI>Автоматически открывается обработка "Конвертации данных" 
+<LI>Администратор принимает решение о переносе тех данных, которые переносить не обязательно. При отказе от переноса какой-либо информации администратор убирает соответствующий флаг 
+<LI>Администратор запускает процесс конвертации 
+<LI>Администратор обновляет базу до финальной версии конфигурации. Файл обновления 1cv8.cfu находиться в подкаталоге tmplts\1c\RetailBase\2_2_&lt;Номер версии&gt;_&lt;Номер сборки&gt;\ каталога установки 1С:Предприятия 8. В конфигураторе "Конфигурация – Поддержка – Обновить конфигурацию – Выбор файла обновления" и далее обновить конфигурацию базы данных. 
+<LI>Для Пользователя конвертации добавляется доступная роль: "Администратор системы"</LI></UL>
+<P><B>Действия в конфигурации 1С:Розница 2.2</B></P>
+<UL>
+<LI>Проверить и настроить Параметры учета (Администрирование - Настройка параметров учета). 
+<LI>Проверить и дозаполнить реквизиты элементов справочника "Организации". 
+<LI class=MsoNormal style="MARGIN: 0cm 0cm 0pt; mso-list: l0 level2 lfo1; tab-stops: list 72.0pt"><SPAN style="FONT-SIZE: 9.5pt; FONT-FAMILY: Verdana">Проверить и дозаполнить реквизиты элементов справочника "Магазины".</SPAN>&nbsp; 
+<LI>Сотрудник предприятия, ответственный за соответствующий блок неконвертируемой информации, вносит ее в систему. 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Переносятся только наименования элементов справочника Скидки (наценки). Пользователю нужно создать условия скидок и настроить перенесенные скидки.</SPAN> 
+<LI>Проверить цены номенклатуры, т.к. записи по регистрам сведений "Цены номенклатуры" и "Цены номенклатуры в магазинах" из документов "Корректировка записей регистров" не переносятся. 
+<LI>Создать рабочие места, подключить оборудование, настроить Кассы и Кассы ККМ. 
+<LI>Настроить Шаблоны чеков ККМ и Шаблоны ПКО и РКО. 
+<LI>Установить границы дат запрета редактирования. 
+<LI>Настроить обмены данных, используемые на предприятии. История обменов не переносится. 
+<LI>Проанализировать внешние обработки в связи с изменением структуры метаданных. 
+<LI>Настроить регламентные задания. 
+<LI>После конвертации рекомендуется провести регламентную процедуру "Удаление помеченных объектов".</LI></UL>
+<P><B>Другие ограничения переноса данных</B></P>
+<UL>
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">В Рознице 2.2 не поддерживаются свойства документов и справочника Организации, и соответственно не конвертируются из Розницы 1.0 </SPAN>
+<LI>Свойства с типом значения «Классификатор единицы измерения» не переносятся 
+<LI>В <SPAN style="BACKGROUND-COLOR: #ffffff">Рознице 2.2 не поддерживается ставка НДС 20%.</SPAN></LI></UL>
+<P><B>Важно!</B> </P>
+<P>Сконвертированные из информационной базы конфигурации Розница 1.0 документы не рекомендуется перепроводить. Для поддержки этого ограничения рекомендуется установить дату последнего сконвертированного документа в качестве даты запрета редактирования. Если возникла необходимость скорректировать остатки товаров или денежных средств рекомендуется создать новые документы корректировок.&nbsp; </P>
+<H2>Приложение 1. Области конвертации</H2>
+<TABLE id=table1 class=withBorder cellSpacing=0 cellPadding=3 width="50%" border=0>
+<TBODY>
+<TR>
+<TH width="6%">&nbsp;</TH>
+<TH width="77%">Область конвертации</TH>
+<TH width="15%">Обязательность конвертации</TH></TR>
+<TR>
+<TD bgColor=#ffeeee><B><SPAN lang=en-us>1</SPAN>.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Номенклатура"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>
+<P style="TEXT-ALIGN: center">&nbsp;</P></TD></TR>
+<TR>
+<TD><SPAN lang=en-us>1</SPAN>.<SPAN lang=en-us>1</SPAN></TD>
+<TD>Преобразование наборов-комплектов</TD>
+<TD style="TEXT-ALIGN: center"><B><SPAN lang=en-us>V</SPAN></B></TD></TR>
+<TR>
+<TD>1.2</TD>
+<TD>Тип номенклатуры</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>1.3</TD>
+<TD>Наборы упаковок</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>1.4</TD>
+<TD>Страны происхождения</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>1.5</TD>
+<TD>Картинки номенклатуры</TD>
+<TD></TD></TR>
+<TR>
+<TD>1.6</TD>
+<TD>Описание&nbsp;номенклатуры</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>2</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Организации"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>2.1</TD>
+<TD>Заполнение реквизитов документов</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD><SPAN lang=en-us>2.2</SPAN></TD>
+<TD>Заполнение данных по системам налогообложения</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>2.<SPAN lang=en-us>3</SPAN></TD>
+<TD>Заполнение регистра "Товары организаций"</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>3.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Контактная информация"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>3.1</TD>
+<TD>Контрагенты</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>3.2</TD>
+<TD>Организации</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>3.3</TD>
+<TD>Физические лица</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>3.4</TD>
+<TD>Паспортные данные</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>3.<SPAN lang=en-us>5</SPAN></TD>
+<TD>Магазины</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>4.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Заполнение табличных частей "Товары""</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>4.1</TD>
+<TD>Обязательные реквизиты табличных частей "Товары"</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>4.2</TD>
+<TD>Заполнение упаковок</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>5.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Финансы"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>5.1</TD>
+<TD>Создание касс и документов</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>6.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Ценообразование"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>6.1</TD>
+<TD>Заполнение реквизитов справочников ценообразования</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>6.2</TD>
+<TD>Документ "Установка цен номенклатуры"</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>6.3</TD>
+<TD>Создание документов "Применения цен"</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD>6.4</TD>
+<TD>Проведение документов "Применения цен"</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>7.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Маркетинг"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>7.1</TD>
+<TD>Заполнение шаблонов скидок</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD>7.2</TD>
+<TD>Заполнение скидок в документах</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>8.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Запасы и закупки"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>8.1</TD>
+<TD>Создание документов перемещения внутри магазинов</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD>8.2</TD>
+<TD>Создание и заполнение складов центрального офиса</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>9.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Прочие"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>9.1</TD>
+<TD>Действия общего обязательного характера</TD>
+<TD style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></TD></TR>
+<TR>
+<TD><SPAN lang=en-us>9.2</SPAN></TD>
+<TD>Конвертация объектов для версии РТ 2.0</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD>9.3</TD>
+<TD>Конвертация объектов для версии РТ 2.1</TD>
+<TD>
+<P style="TEXT-ALIGN: center"><SPAN lang=en-us><B>V</B></SPAN></P></TD></TR>
+<TR>
+<TD>9.4</TD>
+<TD>Свойства</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD>9.5</TD>
+<TD>Функциональные опции</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>9.6</TD>
+<TD>Конвертация документов "Замена карт покупателей"</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR>
+<TR>
+<TD>9.7</TD>
+<TD>Конвертация документов "Корректировка записей регистров"</TD>
+<TD style="TEXT-ALIGN: center">&nbsp;</TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<H2>Приложение 2. Описание алгоритмов конвертации.</H2>
+<P><SPAN style="BACKGROUND-COLOR: #ffffff">В таблице ниже приведены принципы переноса данных в порядке исполняемых процедур.</SPAN></P>
+<TABLE id=table2 class=withBorder cellSpacing=0 cellPadding=3 width="50%" border=0>
+<TBODY>
+<TR>
+<TH width="6%">&nbsp;</TH>
+<TH width="35%">Область конвертации</TH>
+<TH width="57%">Описание алгоритма</TH></TR>
+<TR>
+<TD bgColor=#ffeeee><B><SPAN lang=en-us>1</SPAN>.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Номенклатура"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD><SPAN lang=en-us>1</SPAN>.<SPAN lang=en-us>1</SPAN></TD>
+<TD>Преобразование наборов-комплектов</TD>
+<TD>Преобразование номенклатуры и видов номенклатуры с типом <B>Наборы-комплекты</B> в тип <B>Товар</B></TD></TR>
+<TR>
+<TD>1.2</TD>
+<TD>Тип номенклатуры</TD>
+<TD>Заполнение реквизита <B>Тип номенклатуры </B>элементов справочника "Номенклатура".</TD></TR>
+<TR>
+<TD>1.3</TD>
+<TD>Наборы упаковок</TD>
+<TD>Создание индивидуальных наборов упаковок на основе единиц измерения номенклатуры. Выполняется для всех единиц, кроме единиц хранения остатка. <B>Единица хранения</B> остатков конвертируются в реквизит <B>Базовая единица измерения</B> номенклатуры.</TD></TR>
+<TR>
+<TD>1.4</TD>
+<TD>Страны происхождения</TD>
+<TD>Заполнение реквизита <B>Страна происхождения</B> по наименованию</TD></TR>
+<TR>
+<TD>1.5</TD>
+<TD>Картинки номенклатуры</TD>
+<TD>Перенос в новый формат файлов с картинками номенклатуры</TD></TR>
+<TR>
+<TD height=20>1.6</TD>
+<TD height=20>Описание номенклатуры</TD>
+<TD height=20>
+<P>Перенос&nbsp;описание номенклатуры. </P>
+<P><STRONG>Внимание!</STRONG> Сокращен формат описания номенклатуры. В версии РТ 1.0 тип описания был "строка неорганиченой длины". В версии РТ 2.2 тип описания стал строка 1024</P></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>2</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Организации"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>2.1</TD>
+<TD>Заполнение реквизитов документов</TD>
+<TD><SPAN style="BACKGROUND-COLOR: #ffffff">В нижеперечисленных документах производится заполнение нового реквизита Организация&nbsp; значением <B>Организации</B> реквизита <B>Склад</B> документов Розницы 1.0. </SPAN>
+<UL>
+<LI>Возврат товаров от покупателя 
+<LI>Возврат товаров поставщику 
+<LI>Заказ поставщику 
+<LI>Инвентаризация товаров 
+<LI>Оприходование товаров 
+<LI>Списание товаров 
+<LI>Поступление товаров 
+<LI>Реализация товаров 
+<LI>Сборка товаров </LI></UL>
+<P>З<SPAN style="BACKGROUND-COLOR: #ffffff">аполнение нового реквизита <B>Организация </B>значением <B>Организация</B> реквизита <B>Касса ККМ</B> в документах:</SPAN></P>
+<UL>
+<LI>Отчет о розничных продажах 
+<LI>Чек ККМ </LI></UL>
+<P>З<SPAN style="BACKGROUND-COLOR: #ffffff">аполнение нового реквизита <B>Организация</B> значением <B>Организации</B> реквизита <B>Склад-Отправитель</B> в документе:</SPAN></P>
+<UL>
+<LI>Перемещение товаров</LI></UL>
+<P>Остальные реквизиты документов заполняются значениями соответствующих реквизитов Розницы 1.0 </P></TD></TR>
+<TR>
+<TD>2.2</TD>
+<TD>Заполнение данных по системам налогообложения</TD>
+<TD>Заполнение данными регистров сведений "Применения ЕНВД" и "Системы налогообложения организаций"</TD></TR>
+<TR>
+<TD>2.3</TD>
+<TD>Заполнение регистра "Товары организаций"</TD>
+<TD>Заполнение нового регистра "Товары организаций" на основе данных регистра "Товары на складах". При этом измерение <B>Организация</B> регистра&nbsp; "Товары организаций" заполняется на основе реквизита <B>Организации</B> измерения <B>Склад</B> регистра "Товары на складах".</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>3.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Контактная информация"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>3.1</TD>
+<TD>Контрагенты</TD>
+<TD>Конвертация данных контактной информации по контрагентам по составляющим: 
+<UL>
+<LI>Фактический адрес 
+<LI>Адрес 
+<LI>Факс 
+<LI>Телефон 
+<LI>Email 
+<LI>Другая </LI></UL></TD></TR>
+<TR>
+<TD>3.2</TD>
+<TD>Организации</TD>
+<TD>Конвертация данных контактной информации по организации по составляющим: 
+<UL>
+<LI>Фактический адрес 
+<LI>Адрес 
+<LI>Факс 
+<LI>Телефон 
+<LI>Email 
+<LI>Другая </LI></UL></TD></TR>
+<TR>
+<TD>3.3</TD>
+<TD>Физические лица</TD>
+<TD>Конвертация данных контактной информации по физическим лицам по составляющим: 
+<UL>
+<LI>Фактический адрес 
+<LI>Адрес 
+<LI>Домашний телефон 
+<LI>Телефон 
+<LI>Email 
+<LI>Другая </LI></UL></TD></TR>
+<TR>
+<TD>3,4</TD>
+<TD>Паспортные данные</TD>
+<TD>Перенос паспортных данных физических лиц.</TD></TR>
+<TR>
+<TD>3.5</TD>
+<TD>Магазины</TD>
+<TD>Конвертация данных контактной информации по магазинам по составляющим: 
+<UL>
+<LI>Фактический адрес 
+<LI>Факс 
+<LI>Телефон</LI></UL></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>4.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Заполнение табличных частей "Товары""</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>4.1</TD>
+<TD>Обязательные реквизиты табличных частей "Товары"</TD>
+<TD>Заполнение табличной части "Товары" в документах: 
+<UL>
+<LI>Возврат товаров от покупателя 
+<LI>Возврат товаров поставщику 
+<LI>Заказ поставщику 
+<LI>Инвентаризация товаров 
+<LI>Оприходование товаров 
+<LI>Приходный ордер на товары 
+<LI>Расходный ордер на товары 
+<LI>Списание товаров </LI></UL></TD></TR>
+<TR>
+<TD>4.2</TD>
+<TD>Заполнение упаковок</TD>
+<TD>Заполнение упаковок в табличной части "Товары" в документах: 
+<UL>
+<LI>Возврат товаров от покупателя 
+<LI>Возврат товаров поставщику 
+<LI>Заказ поставщику 
+<LI>Инвентаризация товаров 
+<LI>Оприходование товаров 
+<LI>Приходный ордер на товары 
+<LI>Расходный ордер на товары 
+<LI>Списание товаров 
+<LI>Отчет о розничных продажах 
+<LI>Перемещение товаров 
+<LI>Поступление товаров 
+<LI>Реализация товаров 
+<LI>Чек ККМ 
+<LI>Сборка товаров </LI></UL>
+<P>Заполнение регистров сведений:</P>
+<UL>
+<LI>Комплектующие номенклатуры 
+<LI>Штрихкоды 
+<LI>Коды товаров PLU </LI></UL></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>5.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Финансы"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>5.1</TD>
+<TD>Создание касс и док<SPAN style="BACKGROUND-COLOR: #ffffff">ументов движения денежных средств</SPAN></TD>
+<TD>
+<UL>
+<LI>По данным элементов справочника "Кассы ККМ" с типом <B>Операционная</B> создаются элементы нового справочника <B>"Кассы"</B>. На элементы справочника "Кассы ККМ" с типом Операционная устанавливается <SPAN style="BACKGROUND-COLOR: #ffffff">пометка на удаление </SPAN>
+<LI>Создание статей движения денежных средств <SPAN style="BACKGROUND-COLOR: #ffffff">по виду операции РКО и ПКО в Рознице 1.0</SPAN> 
+<LI>Заполнение реквизитов документов ПКО и РКО 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Создание новых записей справочника "Эквайринговые терминалы" на основании информации о Договорах эквайринга и Кассы</SPAN> 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Заполнение д</SPAN>окументов "Эквайринговая операция" на основании документов "Оплата от покупателей платежной картой" 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Заполнение реквизитов документов РКО и ПКО с видами операций "Передача ДС ..." на основании документов "Внутреннее перемещение денежных средств" </SPAN></LI></UL></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>6.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Ценообразование"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>6.1</TD>
+<TD>Заполнение реквизитов справочников ценообразования</TD>
+<TD>Заполнение новых справочников: 
+<UL>
+<LI>Реквизиты справочника "Виды цен" заполняются соответствующими реквизитами справочника "Типы цен" 
+<LI>"Правила ценообразования"&nbsp; формируются для каждого магазина и заполняются по установленному в магазине типу цен</LI></UL></TD></TR>
+<TR>
+<TD>6.2</TD>
+<TD>Документ "Установка цен номенклатуры"</TD>
+<TD>Заполнение<SPAN style="BACKGROUND-COLOR: #ffffff"> реквизита Вид цены в документах "Установка цен номенклатуры"</SPAN></TD></TR>
+<TR>
+<TD>6.3</TD>
+<TD>Создание документов "Применения цен"</TD>
+<TD>Создание документов "Применение цен" на основе документов "Установка цен в магазине"</TD></TR>
+<TR>
+<TD>6.4</TD>
+<TD>Проведение документов "Применения цен"</TD>
+<TD>Проведение документов "Применение цен"</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>7.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Маркетинг"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>7.1</TD>
+<TD>Заполнение шаблонов скидок</TD>
+<TD>Заполнение дерева скидок. Заполняются только: наименование, варианты совместного действия, способы предоставления скидок. Остальные реквизиты и условия скидок необходимо заполнить вручную</TD></TR>
+<TR>
+<TD>7.2</TD>
+<TD>Заполнение скидок в документах</TD>
+<TD>Заполнение скидок в документах: 
+<UL>
+<LI>Чек ККМ 
+<LI>Отчет о розничных продажах 
+<LI>Маркетинговая акция </LI></UL></TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>8.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Запасы и закупки"</B></TD>
+<TD style="TEXT-ALIGN: center" bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>8.1</TD>
+<TD>Создание документов перемещения внутри магазинов</TD>
+<TD>Создание документов "Ордер на перемещение товаров" на основании документов "Перемещение товаров", у которых склад отправитель и склад получатель принадлежат одному магазину</TD></TR>
+<TR>
+<TD>8.2</TD>
+<TD>Создание и заполнение складов центрального офиса</TD>
+<TD>Создание элементов справочника "Организации" на основании элементов справочника складов с видом склада "Склад Центрального Офиса". Заполнение новыми магазинами документов "Перемещение товаров"</TD></TR>
+<TR>
+<TD bgColor=#ffeeee><B>9.</B></TD>
+<TD bgColor=#ffeeee><B>Блок "Прочие"</B></TD>
+<TD bgColor=#ffeeee>&nbsp;</TD></TR>
+<TR>
+<TD>9.1</TD>
+<TD>Действия общего обязательного характера</TD>
+<TD>
+<UL>
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Очистка не используемых в новой редакции регистров сведений, конвертация которых не представляется возможной ("Торговое оборудование" и "Сценарии обмена рабочих мест") </SPAN>
+<LI>Заполнение реквизита <B>Пол</B> в справочнике "Физические лица" 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Пометка на удаление&nbsp;документов&nbsp;"Внутренний заказ"&nbsp;("Заказ на перемещение")</SPAN> 
+<LI><SPAN style="BACKGROUND-COLOR: #ffffff">Установка и перенос значений по умолчанию:</SPAN> 
+<UL>
+<LI><B>Использовать ордерную схему при перемещении</B> 
+<LI>Установка СКД по умолчанию <B>Для сегментов номенклатуры</B> </LI></UL></LI></UL></TD></TR>
+<TR>
+<TD>9.2</TD>
+<TD>Конвертация объектов для версии РТ 2.0</TD>
+<TD>Конвертация по проектам: 
+<UL>
+<LI>Заказы на перемещение 
+<LI>Заказы поставщикам 
+<LI>Товары к поступлению 
+<LI>Себестоимость номенклатуры 
+<LI>Аналитика продаж 
+<LI>Финансовые документы 
+<LI>Статьи движения денежных средств 
+<LI>Подарочные сертификаты 
+<LI>Регистрация подсчета посетителей 
+<LI>Изменение хозяйственных операций 
+<LI>Изменения в правах доступа 
+<LI>Присоединенные файлы 
+<LI>Договора эквайринга 
+<LI>Инвентаризация товаров 
+<LI>Расчеты с поставщиками 
+<LI>Оборудование <SPAN lang=en-us>OffLine</SPAN> 
+<LI>Распределение выручки по секциям продаж 
+<LI>Замена дисконтных карт 
+<LI>Изменение настроек РМК 
+<LI>Этапы оплаты поступления 
+<LI>Прочие</LI></UL>
+<P>&nbsp;</P></TD></TR>
+<TR>
+<TD>9.3</TD>
+<TD>Конвертация объектов для версии РТ 2.1</TD>
+<TD>Конвертация по проектам: 
+<UL>
+<LI>Распределение продаж по складам 
+<LI>Учет себестоимости 
+<LI>Версии объектов 
+<LI>Учет по видам оплат 
+<LI>Поставщики номенклатуры 
+<LI>Учет фискальных наличных расчетов 
+<LI>Выбор быстрых товаров 
+<LI>Прочие 
+<LI>Подготовка перехода на версию 2.2</LI></UL></TD></TR>
+<TR>
+<TD>9.4</TD>
+<TD>Свойства</TD>
+<TD>
+<P>Конвертация свойств в новый формат: </P>
+<UL>
+<LI><STRONG>Контрагенты </STRONG>
+<LI><STRONG>Номенклатуры </STRONG>
+<LI><STRONG>Характеристики номенклатуры </STRONG>
+<LI><STRONG>Магазины </STRONG>
+<LI><STRONG>Склады </STRONG>
+<LI><STRONG>Физические лица</STRONG></LI></UL></TD></TR>
+<TR>
+<TD>9.5</TD>
+<TD>Функциональные опции</TD>
+<TD>Заполнение значений функциональных опций по используемым объектам: 
+<UL>
+<LI><B>ИспользоватьХарактеристикиНоменклатуры</B> 
+<LI><B>ИспользоватьУпаковкиНоменклатуры</B> 
+<LI><B>ИспользоватьРучныеСкидкиВПродажах</B> 
+<LI><B>ИспользоватьАвтоматическиеСкидкиВПродажах</B> 
+<LI><B>ИспользоватьПередачиТоваровМеждуОрганизациями</B> 
+<LI><B>ИспользоватьПрименениеЦен</B> 
+<LI><STRONG>ИспользоватьДополнительныеРеквизитыИСведения</STRONG>&nbsp;</LI></UL></TD></TR>
+<TR>
+<TD>9.6</TD>
+<TD>Конвертация документов "Замена карт покупателей"</TD>
+<TD>Конвертация документов "Замена карт покупателей"</TD></TR>
+<TR>
+<TD>9.7</TD>
+<TD>Конвертация документов "Корректировка записей регистров"</TD>
+<TD>Конвертация документов "Корректировка записей регистров"</TD></TR></TBODY></TABLE>
+<P><BR>&nbsp; </P></BODY></HTML>
