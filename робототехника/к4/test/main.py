@@ -10,7 +10,7 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 # Create your objects here.
 ev3 = EV3Brick()
 lm = Motor(Port.B, positive_direction = Direction.COUNTERCLOCKWISE); rm = Motor(Port.C)
-r = DriveBase(lm, rm, 55.1, 192)
+r = DriveBase(lm, rm, 55.1, 200)
 ls = ColorSensor(Port.S2); rs = ColorSensor(Port.S3)
 
 inte = errold = pr = ls1 = rs1 = diff = 0
@@ -62,131 +62,113 @@ while ev3.buttons.pressed()==[]: pass
 
 # rstop()
 
-
-# 1 --------------------------------------------------------------------------------------------
-
-# x = ev3.screen.width / 2; y = ev3.screen.height / 2; ev3.speaker.set_volume(10)
-
-# def picture(x, y):
-#     ev3.screen.draw_box(x, y, x + 10, y + 10)
-#     ev3.screen.draw_line(x, y, x + 5, y - 5)
-#     ev3.screen.draw_line(x + 5, y - 5, x + 10, y)
-
-# while (True):
-#     b = ev3.buttons.pressed(); while (b == []): b = ev3.buttons.pressed()
-#     x += (1 if (Button.RIGHT in b) else 0) - (1 if (Button.LEFT in b) else 0)
-#     y += (1 if (Button.UP in b) else 0) - (1 if (Button.DOWN in b) else 0)
-#     print(b); ev3.screen.clear(); picture(x, y); wait(10)
-
-
-# 2 --------------------------------------------------------------------------------------------
-
-# lmotor.run_target(1000, 0); rmotor.run_target(1000, 0); lmotor.stop(); rmotor.stop(); wait(100)
-
-# for i in range(0, 30): lmotor.run_target(1000, i * (-1 if (i % 2 == 0) else 1)); rmotor.run_target(1000, lmotor.angle())
-
-# while (True): rmotor.run_target(1000, -lmotor.angle()); wait(500)
-
-
 # L --------------------------------------------------------------------------------------------
 
-# L3 1 =================================
+# L3 in mainL3
+# L1 in mainL1
 
-# uss = UltrasonicSensor(Port.S1)
-# i = 5.0; ev3.speaker.set_volume(i); io = i
-# while (True):
-#     if (Button.UP in ev3.buttons.pressed()): i += 1
-#     if (Button.DOWN in ev3.buttons.pressed()): i -= 1
-#     if (i != io): ev3.speaker.set_volume(i); io = i
-#     d = uss.distance(); print(d,' ',i)
-#     ev3.speaker.beep(d); wait(150)
+# L9 =================================
 
-# L3 2 =================================
+mm = Motor(Port.A, Direction.COUNTERCLOCKWISE, [8,8])
+lus = UltrasonicSensor(Port.S4)
+rus = UltrasonicSensor(Port.S1)
 
-# db = DriveBase(lmotor, rmotor, 55.1, 192)
-# db.settings(1000, 500, 1000, 500)
+r.settings(1000, 500, 1000, 500)
 
-# while(True):
-#     if (Button.DOWN in ev3.buttons.pressed()):
-#         wait(1000); ev3.speaker.beep()
-#         while(True):
-#             if (Button.UP in ev3.buttons.pressed()): db.straight(1000); break
-#             elif (Button.LEFT in ev3.buttons.pressed()): db.turn(360); break
-#             elif (Button.RIGHT in ev3.buttons.pressed()): db.turn(-360); break
-#         break
-#     elif (Button.UP in ev3.buttons.pressed()):
-#         wait(1000)
-#         for i in range(4): db.straight(100); db.turn(90)
-#         break
-#     elif (Button.LEFT in ev3.buttons.pressed()):
-#         wait(1000)
-#         for i in range(3): db.straight(100); db.turn(120)
-#         break
-#     elif (Button.RIGHT in ev3.buttons.pressed()):
-#         wait(1000)
-#         for i in range(6): db.straight(100); db.turn(60)
-#         break
+# r.turn(360)
+# while ev3.buttons.pressed()==[]: pass
+# r.turn(-360)
+# while ev3.buttons.pressed()==[]: pass
 
-# wait(100)
+mm.reset_angle(0)
+# mm.run_target(500, 110, Stop.HOLD) 110 = 90 
 
-# L3 3 =================================
+r.straight(100); pid_to_motor(300, di = 300); pid_to_X(1000)
+pid_to_motor(1000, di = 40)
+# r.straight(40)
+pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_motor(300, di = 200); pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_motor(300, di = 200); pid_to_X(1000)
+rstop()
+r.straight(5); r.straight(-40)
+mm.run_target(500, 90, Stop.HOLD)
+r.straight(80)
+mm.run_target(500, 120, Stop.HOLD)
+r.straight(-120); r.turn(180)
+pid_to_motor(500, di = 300); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(5)
+mm.run_target(500, 0, Stop.HOLD)
+r.straight(-120); r.turn(180)
+pid_to_motor(500, di = 150); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(5); r.turn(-25); r.straight(70)
+mm.run_target(250, 120, Stop.HOLD)
+r.straight(-70); r.turn(-145)
+pid_to_motor(500, di = 300); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_X(1000); rstop()
+r.straight(40); r.turn(90)
+pid_to_X(1000); rstop()
+r.straight(5)
+mm.run_target(500, 80, Stop.HOLD)
+r.straight(-120); r.turn(180)
+mm.run_target(500, 0, Stop.HOLD)
+pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_X(1000); rstop()
+r.straight(40); r.turn(90)
+pid_to_motor(700, di = 200); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(5); r.turn(25); r.straight(70)
+mm.run_target(250, 120, Stop.HOLD)
+r.straight(-70); r.turn(150)
+pid_to_motor(500, di = 300); pid_to_X(1000)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_X(1000); pid_to_motor(700, di = 50); pid_to_X(1000); rstop()
+r.straight(40); r.turn(90)
+pid_to_X(1000); rstop()
+r.straight(5)
+mm.run_target(500, 80, Stop.HOLD)
+r.straight(-120); r.turn(180)
+mm.run_target(500, 0, Stop.HOLD)
+pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_X(1000); pid_to_motor(700, di = 50); pid_to_X(1000)
+pid_to_motor(700, di = 50); pid_to_X(1000); rstop()
+r.straight(40); r.turn(-83)
+pid_to_motor(700, di = 200); pid_to_X(1000); rstop()
+r.straight(5)
+r.straight(-20)
+ul = lus.distance(); ur = rus.distance()
+ev3.screen.print("r = " + repr(ur) + " | l = " + repr(ul))
+rt = ur < 130; lt = ul < 130; mt = not (rt and lt)
 
-# db = DriveBase(lmotor, rmotor, 55.1, 192)
+if (mt):
+    r.straight(-60)
+    mm.run_target(500, 90, Stop.HOLD)
+    r.straight(100)
+    mm.run_target(500, 120, Stop.HOLD)
+    r.straight(-100); r.turn(180)
+    pid_to_motor(500, di = 300); pid_to_X(1000)
+    pid_to_motor(700, di = 50); pid_to_X(1000)
+    pid_to_motor(700, di = 50); pid_to_X(1000); rstop()
+    r.straight(40); r.turn(-83)
+    pid_to_X(1000); rstop()
+    r.straight(5)
+    mm.run_target(500, 0, Stop.HOLD)
+    r.straight(-110); r.turn(-83)
 
-# while(not (Button.CENTER in ev3.buttons.pressed())): wait(100)
-# ev3.speaker.beep(); wait(1000); s = []; r = []
-# while(not (Button.CENTER in ev3.buttons.pressed())):
-#     wait(50); d = db.state(); s += [d[1]]; r += [d[3]]
-# ev3.speaker.beep(); wait(3000); ev3.speaker.beep()
+# if (rt):
 
-# for i in range(len(s)): db.drive(s[i], r[i]); wait(50)
-# db.stop()
-
-# L3 4 =================================
-
-# import random; ma = 1000; mi = 0; d = 0
-
-# ev3.speaker.set_volume(100)
-# ev3.speaker.set_speech_options('ru', 'm4', 1, 25)
-# for i in range(10):
-#     if (mi == ma): break
-#     z = int((ma - mi) / 2 + mi); k = random.randint(0, 1); o = random.randint(0, 1)
-#     if (k == 0 and z == ma): k == 1
-#     if (k == 1 and z == mi): k == 0
-#     l = "больше " if k == 0 else "меньше "; l += "или ровно " if o == 0 else ""
-#     g = ""; ev3.screen.clear()
-#     l1 = ">" if k == 0 else "<"; l1 += "=" if o == 0 else ""
-#     ev3.screen.print("n " + l1 + " " + repr(z) + "\ni = " + repr(i) + 
-#                      "\n" + repr(mi) + " <= n <= " + repr(ma))
-#     ev3.speaker.say("хм " + l + repr(z)); ev3.speaker.beep()
-#     while (True):
-#         if (Button.UP in ev3.buttons.pressed()):
-#             if (k == 0): mi = z if o == 0 else z + 1
-#             else: ma = z if o == 0 else z - 1
-#             break
-#         elif (Button.DOWN in ev3.buttons.pressed()):
-#             if (k == 0): ma = z - 1 if o == 0 else z
-#             else: mi = z + 1 if o == 0 elsez 
-#             break
-#         wait(1)
-
-# if (ma == mi): d = 1; z = ma
-# else: z = random.randint(mi, ma)
-# ev3.screen.clear()
-# ev3.screen.print("n = " + repr(z) + "\n" + repr(mi) + " <= n <= " + repr(ma))
-# ev3.speaker.say("хм это " + repr(z) if (ma != mi) else "это " + repr(z))
-# if (ma != mi): ev3.speaker.beep()
-# while (ma != mi):
-#     if (Button.UP in ev3.buttons.pressed()): d = 1; break
-#     elif (Button.DOWN in ev3.buttons.pressed()): break
-
-# ev3.speaker.say("Победа" if (d == 1) else "Что это")
-
-# L3 5 =================================
+# if (lt):
 
 
-
-
-
-
+while ev3.buttons.pressed()==[]: pass
 
